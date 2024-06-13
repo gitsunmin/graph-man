@@ -9,13 +9,37 @@
   "categories": [
     "Other"
   ],
+  "publisher": "gitsunmin",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "show-graph-man",
+          "title": "Package Explorer",
+          "icon": "$(list-flat)"
+        }
+      ]
+    },
+    "views": {
+      "show-graph-man": [
+        {
+          "id": "graph-man-environment",
+          "name": "Environment",
+          "type": "tree"
+        },
+        {
+          "id": "graph-man-header",
+          "name": "Header",
+          "type": "tree"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "graph-man.open-graph-man",
-        "title": "Open Graph Man"
+        "command": "graph-man.show-graph-man",
+        "title": "Graph Man: Show Graph Man"
       }
     ]
   },
@@ -34,16 +58,22 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.89.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/vscode": "^1.89.0",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
-    "eslint": "^8.57.0",
-    "esbuild": "^0.20.2",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.4.5",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
