@@ -46,13 +46,24 @@
       },
       {
         "command": "graph-man.refresh-environment",
-        "title": "Graph Man: Refresh Environment"
+        "title": "Graph Man: Refresh Environment",
+        "icon": "$(refresh)"
       },
       {
         "command": "graph-man.refresh-header",
         "title": "Graph Man: Refresh Header"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "graph-man.refresh-environment",
+          "icon": "$(refresh)",
+          "when": "view == graph-man-environment",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
