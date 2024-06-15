@@ -1,0 +1,20 @@
+{
+    "environment": {
+        "development": {
+            "url": "http://localhost:3000",
+            "headers": {
+                "Cookies": {
+                    "session": "session"
+                }
+            }
+        },
+        "production": {
+            "url": "https://graph",
+            "headers": {
+                "Cookies": {
+                    "session": "session"
+                }
+            }
+        }
+    }
+}

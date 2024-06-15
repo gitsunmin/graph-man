@@ -10,28 +10,31 @@
     "Other"
   ],
   "publisher": "gitsunmin",
-  "activationEvents": [],
   "main": "./dist/extension.js",
+  "activationEvents": [
+    "onView:graph-man-environment",
+    "onView:graph-man-graphqls"
+  ],
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "show-graph-man",
-          "title": "Package Explorer",
+          "id": "graph-man",
+          "title": "Graph Man",
           "icon": "$(list-flat)"
         }
       ]
     },
     "views": {
-      "show-graph-man": [
+      "graph-man": [
         {
           "id": "graph-man-environment",
           "name": "Environment",
           "type": "tree"
         },
         {
-          "id": "graph-man-header",
-          "name": "Header",
+          "id": "graph-man-graphqls",
+          "name": "Graphqls",
           "type": "tree"
         }
       ]
@@ -39,7 +42,15 @@
     "commands": [
       {
         "command": "graph-man.show-graph-man",
-        "title": "Graph Man: Show Graph Man"
+        "title": "Graph Man: Show Configuration"
+      },
+      {
+        "command": "graph-man.refreshEnvironment",
+        "title": "Graph Man: Refresh Environment"
+      },
+      {
+        "command": "graph-man.refreshHeader",
+        "title": "Graph Man: Refresh Header"
       }
     ]
   },
