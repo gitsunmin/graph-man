@@ -7,9 +7,11 @@ export class EnvironmentTreeProvider implements vscode.TreeDataProvider<TreeItem
     readonly onDidChangeTreeData: vscode.Event<TreeItem | undefined | null | void> = this._onDidChangeTreeData.event;
 
     private environments: any = {};
+    private selectedEnvironment: string | undefined;
 
-    constructor(private workspaceRoot: string) {
+    constructor(private context: vscode.ExtensionContext, private workspaceRoot: string) {
         this.loadConfig();
+        this.selectedEnvironment = context.globalState.get('selectedEnvironment');
     }
 
     private loadConfig() {
@@ -28,18 +30,19 @@ export class EnvironmentTreeProvider implements vscode.TreeDataProvider<TreeItem
     }
 
     getChildren(element?: TreeItem): Thenable<TreeItem[]> {
-        if (element) {
-            // Return headers
-            const headers = this.environments[element.label]?.headers || {};
-            return Promise.resolve(Object.keys(headers).map(key => new TreeItem(key, headers[key], vscode.TreeItemCollapsibleState.None)));
-        } else {
-            // Return environments
-            return Promise.resolve(Object.keys(this.environments).map(env => new TreeItem(env, this.environments[env], vscode.TreeItemCollapsibleState.Collapsed)));
-        }
+
+        if (element) { return Promise.resolve([]); }
+        else { return Promise.resolve(Object.keys(this.environments).map(env => new TreeItem(env, this.environments[env], this.selectedEnvironment === env))); }
     }
 
     refresh(): void {
         this.loadConfig();
+    }
+
+    selectEnvironment(environment: string) {
+        this.selectedEnvironment = environment;
+        this.context.globalState.update('selectedEnvironment', environment);
+        this.refresh();
     }
 }
 
@@ -47,11 +50,11 @@ class TreeItem extends vscode.TreeItem {
     constructor(
         public readonly label: string,
         public readonly details: any,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState
+        public readonly selected: boolean,
     ) {
-        super(label, collapsibleState);
+        super(label, vscode.TreeItemCollapsibleState.None);
         this.tooltip = `${this.label}: ${JSON.stringify(this.details)}`;
-        this.description = this.details.url ? this.details.url : '';
-        this.iconPath = new vscode.ThemeIcon('none');
+        this.description = details.url ? details.url : '';
+        this.iconPath = new vscode.ThemeIcon(selected ? 'pass-filled' : 'circle-large-outline');
     }
 }

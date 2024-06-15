@@ -30,7 +30,7 @@
         {
           "id": "graph-man-environment",
           "name": "Environment",
-          "type": "tree"
+          "contextualTitle": "Graph Man Environment"
         },
         {
           "id": "graph-man-graphqls",
@@ -45,11 +45,11 @@
         "title": "Graph Man: Show Configuration"
       },
       {
-        "command": "graph-man.refreshEnvironment",
+        "command": "graph-man.refresh-environment",
         "title": "Graph Man: Refresh Environment"
       },
       {
-        "command": "graph-man.refreshHeader",
+        "command": "graph-man.refresh-header",
         "title": "Graph Man: Refresh Header"
       }
     ]

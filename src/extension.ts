@@ -3,22 +3,26 @@ import { EnvironmentTreeProvider } from './views/environmentTree';
 import { GraphqlsTreeProvider } from './views/graphqlsTree';
 
 export function activate(context: vscode.ExtensionContext) {
-    const environmentTreeProvider = new EnvironmentTreeProvider(vscode.workspace.rootPath || '');
+    const environmentTreeProvider = new EnvironmentTreeProvider(context, vscode.workspace.rootPath || '');
+
+    const environmentTreeview = vscode.window.createTreeView('graph-man-environment', { treeDataProvider: environmentTreeProvider });
     const graphqlsTreeProvider = new GraphqlsTreeProvider(vscode.workspace.rootPath || '');
 
-    vscode.window.registerTreeDataProvider('graph-man-environment', environmentTreeProvider);
     vscode.window.registerTreeDataProvider('graph-man-graphqls', graphqlsTreeProvider);
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('graph-man.refreshEnvironment', () => environmentTreeProvider.refresh()),
-        vscode.commands.registerCommand('graph-man.refreshHeader', () => graphqlsTreeProvider.refresh()),
-        vscode.commands.registerCommand('graph-man.selectEnvironment', (node) => selectEnvironment(node))
+        vscode.commands.registerCommand('graph-man.refresh-environment', () => environmentTreeProvider.refresh()),
+        vscode.commands.registerCommand('graph-man.refresh-header', () => graphqlsTreeProvider.refresh()),
+        environmentTreeview
     );
 
-    let selectedEnvironment = context.workspaceState.get('selectedEnvironment', null);
-    if (selectedEnvironment) {
-        vscode.window.showInformationMessage(`Selected Environment: ${selectedEnvironment}`);
-    }
+
+    environmentTreeview.onDidChangeSelection(e => {
+        if (e.selection.length > 0) {
+            const selectedTreeItem = e.selection[0];
+            environmentTreeProvider.selectEnvironment(selectedTreeItem.label);
+        }
+    });
 }
 
 async function selectEnvironment(node: any) {
@@ -29,4 +33,4 @@ async function selectEnvironment(node: any) {
     }
 }
 
-export function deactivate() {}
+export function deactivate() { }
