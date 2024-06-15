@@ -21,7 +21,7 @@ export class EnvironmentTreeProvider implements vscode.TreeDataProvider<TreeItem
             this.environments = JSON.parse(configContent).environment;
             this._onDidChangeTreeData.fire();
         } else {
-            vscode.window.showErrorMessage('config.json file not found');
+            vscode.window.showErrorMessage('.graph-man/config.json file not found');
         }
     }
 

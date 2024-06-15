@@ -19,7 +19,7 @@ export class GraphqlsTreeProvider implements vscode.TreeDataProvider<TreeItem> {
             this.graphqls = JSON.parse(configContent).environment;
             this._onDidChangeTreeData.fire();
         } else {
-            vscode.window.showErrorMessage('config.json file not found');
+            vscode.window.showErrorMessage('.graph-man/config.json file not found');
         }
     }
 
