@@ -52,6 +52,11 @@
       {
         "command": "graph-man.refresh-header",
         "title": "Graph Man: Refresh Header"
+      },
+      {
+        "command": "graph-man.send-graphql",
+        "title": "Graph Man: Send Graphql",
+        "icon": "$(send)"
       }
     ],
     "menus": {
@@ -61,6 +66,13 @@
           "icon": "$(refresh)",
           "when": "view == graph-man-environment",
           "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+            "command": "graph-man.send-graphql",
+            "group": "navigation",
+            "when": "resource =~ /.graph-man/ && resourceExtname == '.graphql'"
         }
       ]
     }
