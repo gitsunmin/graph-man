@@ -3,42 +3,12 @@ import { EnvironmentTreeProvider } from './views/environmentTree';
 import { GraphqlsTreeProvider } from './views/graphqlsTree';
 import path from 'path';
 import { loadConfig } from './utils/config';
-import { match } from 'ts-pattern';
+import { P, match } from 'ts-pattern';
 import { GQL } from './utils/gql';
+import outputChannel from './utils/outputChannel';
 
-let outputChannel: vscode.OutputChannel;
-
-function sendGraphQL({
-    query = '',
-    variables = {},
-    endpoint,
-    headers,
-}: {
-    query: string;
-    variables: Record<string, any>;
-    endpoint: string;
-    headers: Record<string, string>;
-}) {
-    fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', ...headers },
-        body: JSON.stringify({
-            query,
-            variables,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-
-            outputChannel.appendLine(JSON.stringify(data, null, 2));
-        })
-        .catch(error => {
-            vscode.window.showErrorMessage(error.message);
-        });
-}
 
 export function activate(context: vscode.ExtensionContext) {
-    outputChannel = vscode.window.createOutputChannel('Graph Man');
 
     const environmentTreeProvider = new EnvironmentTreeProvider(context, vscode.workspace.rootPath || '');
 
@@ -61,36 +31,35 @@ export function activate(context: vscode.ExtensionContext) {
                 .with({ __tag: 'Left' }, ({ value: errorMessage }) => {
                     vscode.window.showErrorMessage(errorMessage);
                 })
-                .with({ __tag: 'Right' }, ({ value: { environment } }) => {
+                .with({
+                    __tag: 'Right', value: {
+                        environment: P.when((environment) => !!environment[selectedEnvironment])
+                    }
+                }, ({ value: { environment } }) => {
                     const { url: endpoint } = environment[selectedEnvironment];
-
-                    outputChannel.show(true);
-                    outputChannel.clear();
-                    outputChannel.appendLine('Send GQL:');
-                    outputChannel.appendLine(`endpoint: ${endpoint}`);
-                    outputChannel.appendLine(`query: ${query}`);
-                    outputChannel.appendLine(`headers: ${JSON.stringify({})}`);
-                    outputChannel.appendLine(`===============================`);
 
                     GQL.send({
                         query,
                         variables: {},
                         endpoint,
                         headers: {},
-                    }).then((result) => {
-
-                        match(result)
-                            .with({ __tag: 'Left' }, ({ value: errorMessage }) => {
-                                vscode.window.showErrorMessage(errorMessage as string);
-                            })
-                            .with({ __tag: 'Right' }, ({ value }) => {
-                                outputChannel.appendLine(JSON.stringify(value, null, 2));
-                            })
-                            .exhaustive();
-                    });
+                    }).then((result) => match(result)
+                        .with({ __tag: 'Left' }, ({ value: errorMessage }) => {
+                            vscode.window.showErrorMessage(errorMessage as string);
+                        })
+                        .with({ __tag: 'Right' }, ({ value }) => {
+                            outputChannel.show(true);
+                            outputChannel.clear();
+                            outputChannel.appendLine('Send GQL:');
+                            outputChannel.appendLine(`endpoint: ${endpoint}`);
+                            outputChannel.appendLine(`= = = = = = = = = = = = = = = = = =`);
+                            outputChannel.appendLine(JSON.stringify(value, null, 2));
+                        })
+                        .exhaustive()
+                    );
 
                 })
-                .exhaustive();
+                .otherwise(() => vscode.window.showErrorMessage('Environment not found'));
 
         }),
     );
