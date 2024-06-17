@@ -70,9 +70,9 @@
       ],
       "editor/title": [
         {
-            "command": "graph-man.send-graphql",
-            "group": "navigation",
-            "when": "resource =~ /.graph-man/ && resourceExtname == '.graphql'"
+          "command": "graph-man.send-graphql",
+          "group": "navigation",
+          "when": "resource =~ /.graph-man/ && resourceExtname == '.graphql'"
         }
       ]
     }
@@ -108,6 +108,7 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "ts-pattern": "^5.2.0"
   }
 }

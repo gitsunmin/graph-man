@@ -1,7 +1,10 @@
 import * as vscode from 'vscode';
 import { EnvironmentTreeProvider } from './views/environmentTree';
 import { GraphqlsTreeProvider } from './views/graphqlsTree';
-import { getConfig } from './utils/loadConfig';
+import path from 'path';
+import { loadConfig } from './utils/config';
+import { match } from 'ts-pattern';
+import { GQL } from './utils/gql';
 
 let outputChannel: vscode.OutputChannel;
 
@@ -16,7 +19,6 @@ function sendGraphQL({
     endpoint: string;
     headers: Record<string, string>;
 }) {
-
     fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...headers },
@@ -28,10 +30,6 @@ function sendGraphQL({
         .then(response => response.json())
         .then(data => {
 
-            // Terminal 생성
-            outputChannel.show(true);
-            outputChannel.clear();
-            outputChannel.appendLine('Hello World');
             outputChannel.appendLine(JSON.stringify(data, null, 2));
         })
         .catch(error => {
@@ -55,15 +53,45 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('graph-man.send-graphql', async () => {
             const selectedEnvironment = context.globalState.get('selectedEnvironment') as string ?? '';
             const query = vscode.window.activeTextEditor?.document.getText() ?? '';
-            const config = getConfig(vscode.workspace.rootPath || '');
-            const endpoint = config.environment[selectedEnvironment]?.url ?? '';
+            const configPath = path.join(vscode.workspace.rootPath || '', '.graph-man/config.json');
 
-            sendGraphQL({
-                query,
-                variables: {},
-                endpoint,
-                headers: {},
-            });
+            const config = loadConfig(configPath);
+
+            match(config)
+                .with({ __tag: 'Left' }, ({ value: errorMessage }) => {
+                    vscode.window.showErrorMessage(errorMessage);
+                })
+                .with({ __tag: 'Right' }, ({ value: { environment } }) => {
+                    const { url: endpoint } = environment[selectedEnvironment];
+
+                    outputChannel.show(true);
+                    outputChannel.clear();
+                    outputChannel.appendLine('Send GQL:');
+                    outputChannel.appendLine(`endpoint: ${endpoint}`);
+                    outputChannel.appendLine(`query: ${query}`);
+                    outputChannel.appendLine(`headers: ${JSON.stringify({})}`);
+                    outputChannel.appendLine(`===============================`);
+
+                    GQL.send({
+                        query,
+                        variables: {},
+                        endpoint,
+                        headers: {},
+                    }).then((result) => {
+
+                        match(result)
+                            .with({ __tag: 'Left' }, ({ value: errorMessage }) => {
+                                vscode.window.showErrorMessage(errorMessage as string);
+                            })
+                            .with({ __tag: 'Right' }, ({ value }) => {
+                                outputChannel.appendLine(JSON.stringify(value, null, 2));
+                            })
+                            .exhaustive();
+                    });
+
+                })
+                .exhaustive();
+
         }),
     );
 
