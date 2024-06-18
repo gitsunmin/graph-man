@@ -48,11 +48,9 @@ export function activate(context: vscode.ExtensionContext) {
                             vscode.window.showErrorMessage(errorMessage as string);
                         })
                         .with({ __tag: 'Right' }, ({ value }) => {
+                            vscode.window.showInformationMessage('GQL success | endpoint: ' + endpoint);
                             outputChannel.show(true);
                             outputChannel.clear();
-                            outputChannel.appendLine('Send GQL:');
-                            outputChannel.appendLine(`endpoint: ${endpoint}`);
-                            outputChannel.appendLine(`= = = = = = = = = = = = = = = = = =`);
                             outputChannel.appendLine(JSON.stringify(value, null, 2));
                         })
                         .exhaustive()
