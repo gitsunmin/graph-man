@@ -9,4 +9,4 @@ export const readJSONSync = <T>(path: string): Option<T> => {
     } catch (error) {
         return O.None();
     }
-}
+};

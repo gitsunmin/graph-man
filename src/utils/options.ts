@@ -24,4 +24,4 @@ export const O = {
     None: <T>(): Option<T> => ({ __tag: 'None' }),
     isNone: <T>(option: Option<T>): option is None => option.__tag === 'None',
     isSome: <T>(option: Option<T>): option is Some<T> => option.__tag === 'Some',
-}
+};

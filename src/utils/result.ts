@@ -15,4 +15,4 @@ export const R = {
     Right: <T>(value: T): Right<T> => ({ value, __tag: 'Right' }),
     isLeft: <L, R>(result: Result<L, R>): result is Left<L> => result.__tag === 'Left',
     isRight: <L, R>(result: Result<L, R>): result is Right<R> => result.__tag === 'Right',
-}
+};

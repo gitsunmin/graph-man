@@ -1,13 +1,15 @@
 {
   "name": "graph-man",
   "displayName": "Graph Man",
-  "description": "",
+  "description": "This Extension is a Tester for GraphQL Queries and Mutations.",
   "version": "0.0.1",
+  "icon": "src/assets/icon.webp",
   "engines": {
     "vscode": "^1.89.0"
   },
   "categories": [
-    "Other"
+    "GraphQL",
+    "API"
   ],
   "publisher": "gitsunmin",
   "main": "./dist/extension.js",
