@@ -1,0 +1,11 @@
+query ExampleQuery {
+  continents {
+    code
+  }
+  countries {
+    code
+  }
+  languages {
+    code
+  }
+}

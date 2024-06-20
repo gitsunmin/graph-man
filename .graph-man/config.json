@@ -1,7 +1,7 @@
 {
     "environment": {
         "development": {
-            "url": "http://localhost:3000",
+            "url": "https://countries.trevorblades.com/graphql",
             "headers": {
                 "Cookies": {
                     "session": "session"
@@ -9,7 +9,7 @@
             }
         },
         "production": {
-            "url": "https://graph",
+            "url": "http://localhost:3200",
             "headers": {
                 "Cookies": {
                     "session": "session"

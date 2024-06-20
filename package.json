@@ -8,8 +8,7 @@
     "vscode": "^1.89.0"
   },
   "categories": [
-    "GraphQL",
-    "API"
+    "GraphQL"
   ],
   "publisher": "gitsunmin",
   "main": "./dist/extension.js",
