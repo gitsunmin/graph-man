@@ -43,4 +43,4 @@ export const sendGraphQL = (context: vscode.ExtensionContext, outputChannel: vsc
         })
         .otherwise(() => vscode.window.showErrorMessage('Environment not found'));
 
-}
+};
