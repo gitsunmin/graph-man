@@ -1,4 +1,4 @@
-import { R } from './result';
+import { E } from './fp/Either';
 
 const send = async ({
     query = '',
@@ -12,7 +12,7 @@ const send = async ({
     headers: Record<string, string>;
 }) => {
     try {
-        return R.Right(await fetch(endpoint, {
+        return E.Right(await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', ...headers },
             body: JSON.stringify({
@@ -22,7 +22,7 @@ const send = async ({
         }).then(res => res.json()));
 
     } catch (error) {
-        return R.Left(error);
+        return E.Left(error);
     }
 };
 

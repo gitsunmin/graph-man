@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { O, Option } from './options';
+import { O, Option } from './fp/Options';
 
 export const readJSONSync = <T>(path: string): Option<T> => {
     try {

@@ -8,11 +8,11 @@ type Right<T> = {
     __tag: 'Right';
 };
 
-export type Result<L, R> = Left<L> | Right<R>;
+export type Either<L, R> = Left<L> | Right<R>;
 
-export const R = {
+export const E = {
     Left: <T>(value: T): Left<T> => ({ value, __tag: 'Left' }),
     Right: <T>(value: T): Right<T> => ({ value, __tag: 'Right' }),
-    isLeft: <L, R>(result: Result<L, R>): result is Left<L> => result.__tag === 'Left',
-    isRight: <L, R>(result: Result<L, R>): result is Right<R> => result.__tag === 'Right',
+    isLeft: <L, R>(either: Either<L, R>): either is Left<L> => either.__tag === 'Left',
+    isRight: <L, R>(either: Either<L, R>): either is Right<R> => either.__tag === 'Right',
 };
