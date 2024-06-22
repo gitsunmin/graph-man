@@ -4,7 +4,7 @@ import { GraphqlFilesProvider } from "./views/graphqlsTree";
 import outputChannel from "./utils/outputChannel";
 import { sendGraphQL } from "./commands/send-graphql";
 import path from 'node:path';
-import { openFile } from './utils/file';
+import { openFile } from './commands/open-file';
 
 export function activate(context: vscode.ExtensionContext) {
 	const environmentTreeProvider = new EnvironmentTreeProvider(

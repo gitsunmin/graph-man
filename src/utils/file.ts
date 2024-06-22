@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import * as fs from "node:fs";
 import { O, type Option } from "../lib/fp/Options";
 
@@ -20,11 +19,4 @@ export const readDirSync = (path: string): Option<string[]> => {
 	} catch (error) {
 		return O.None();
 	}
-}
-
-
-export const openFile = (filePath: string) => {
-	vscode.window.showInformationMessage(`Opening ${filePath}`);
-	const fileUri = vscode.Uri.file(filePath);
-	vscode.window.showTextDocument(fileUri);
 }
