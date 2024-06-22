@@ -1,30 +1,29 @@
 import * as vscode from "vscode";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
-import { GraphqlsTreeProvider } from "./views/graphqlsTree";
+import { GraphqlFilesProvider } from "./views/graphqlsTree";
 import outputChannel from "./utils/outputChannel";
 import { sendGraphQL } from "./commands/send-graphql";
+import path from 'node:path';
+import { openFile } from './utils/file';
 
 export function activate(context: vscode.ExtensionContext) {
 	const environmentTreeProvider = new EnvironmentTreeProvider(
 		context,
 		vscode.workspace.rootPath || "",
 	);
-	const graphqlsTreeProvider = new GraphqlsTreeProvider(
-		context,
-		vscode.workspace.rootPath || "",
-	);
+	const graphqlFilesTreeProvider = new GraphqlFilesProvider(path.join(vscode.workspace.rootPath || ""));
 
 	const environmentTreeview = vscode.window.createTreeView(
 		"graph-man-environment",
 		{ treeDataProvider: environmentTreeProvider },
 	);
 	vscode.window.createTreeView("graph-man-graphqls", {
-		treeDataProvider: graphqlsTreeProvider,
+		treeDataProvider: graphqlFilesTreeProvider,
 	});
 
 	vscode.window.registerTreeDataProvider(
 		"graph-man-graphqls",
-		graphqlsTreeProvider,
+		graphqlFilesTreeProvider,
 	);
 
 	context.subscriptions.push(
@@ -32,15 +31,12 @@ export function activate(context: vscode.ExtensionContext) {
 			"graph-man.refresh-environment",
 			environmentTreeProvider.refresh,
 		),
-		vscode.commands.registerCommand(
-			"graph-man.refresh-header",
-			graphqlsTreeProvider.refresh,
-		),
 
 		vscode.commands.registerCommand(
 			"graph-man.send-graphql",
 			sendGraphQL(context, outputChannel),
 		),
+		vscode.commands.registerCommand('graph-man.open-file', openFile),
 	);
 
 	environmentTreeview.onDidChangeSelection((e) => {

@@ -1,3 +1,4 @@
+import * as vscode from "vscode";
 import * as fs from "node:fs";
 import { O, type Option } from "../lib/fp/Options";
 
@@ -10,3 +11,20 @@ export const readJSONSync = <T>(path: string): Option<T> => {
 		return O.None();
 	}
 };
+
+export const readDirSync = (path: string): Option<string[]> => {
+	try {
+		return fs.existsSync(path)
+			? O.Some(fs.readdirSync(path))
+			: O.None();
+	} catch (error) {
+		return O.None();
+	}
+}
+
+
+export const openFile = (filePath: string) => {
+	vscode.window.showInformationMessage(`Opening ${filePath}`);
+	const fileUri = vscode.Uri.file(filePath);
+	vscode.window.showTextDocument(fileUri);
+}

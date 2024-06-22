@@ -11,9 +11,8 @@ export type GraphManConfig = {
 	environment: Record<string, Environment>;
 };
 
-export const loadConfig = (path: string): Either<string, GraphManConfig> => {
-	const config = readJSONSync<GraphManConfig>(path);
-	return match(config)
+export const loadConfig = (path: string): Either<string, GraphManConfig> =>
+	match(readJSONSync<GraphManConfig>(path))
 		.with(P.nullish, () => E.Left("Config file not found"))
 		.with({ __tag: "None" }, () => E.Left("Config file is empty"))
 		.with({ value: { environment: P.nullish } }, () =>
@@ -34,4 +33,3 @@ export const loadConfig = (path: string): Either<string, GraphManConfig> => {
 		.otherwise(({ value }) => {
 			return E.Right(value);
 		});
-};

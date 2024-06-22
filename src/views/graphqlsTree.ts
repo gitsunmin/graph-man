@@ -1,79 +1,75 @@
-import * as vscode from "vscode";
-import * as fs from "node:fs";
-import * as path from "node:path";
-import type { Environment } from "../utils/config";
+import * as vscode from 'vscode';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
-export class GraphqlsTreeProvider implements vscode.TreeDataProvider<TreeItem> {
-	private _onDidChangeTreeData: vscode.EventEmitter<
-		TreeItem | undefined | null
-	> = new vscode.EventEmitter<TreeItem | undefined | null>();
-	readonly onDidChangeTreeData: vscode.Event<TreeItem | undefined | null> =
-		this._onDidChangeTreeData.event;
+export class GraphqlFilesProvider implements vscode.TreeDataProvider<TreeNode> {
+	private _onDidChangeTreeData: vscode.EventEmitter<TreeNode | undefined | null> = new vscode.EventEmitter<TreeNode | undefined | null>();
+	readonly onDidChangeTreeData: vscode.Event<TreeNode | undefined | null> = this._onDidChangeTreeData.event;
 
-	private environments: Record<string, unknown> = {};
-	private selectedEnvironment: string | undefined;
+	constructor(private workspaceRoot: string) { }
 
-	constructor(
-		private context: vscode.ExtensionContext,
-		private workspaceRoot: string,
-	) {
-		this.loadConfig();
-		this.selectedEnvironment = context.globalState.get("selectedEnvironment");
-	}
-
-	private loadConfig() {
-		const configPath = path.join(this.workspaceRoot, ".graph-man/config.json");
-		if (fs.existsSync(configPath)) {
-			const configContent = fs.readFileSync(configPath, "utf-8");
-			this.environments = JSON.parse(configContent).environment;
-			this._onDidChangeTreeData.fire(undefined);
-		} else {
-			vscode.window.showErrorMessage(".graph-man/config.json file not found");
-		}
-	}
-
-	getTreeItem(element: TreeItem): vscode.TreeItem {
+	getTreeItem(element: TreeNode): vscode.TreeItem {
 		return element;
 	}
 
-	getChildren(element?: TreeItem): Thenable<TreeItem[]> {
-		if (element) {
+	getChildren(element?: TreeNode): Thenable<TreeNode[]> {
+		if (!this.workspaceRoot) {
+			vscode.window.showInformationMessage('No .graphql or .gql files found in empty workspace');
 			return Promise.resolve([]);
 		}
-		return Promise.resolve(
-			Object.keys(this.environments).map(
-				(env) =>
-					new TreeItem(
-						env,
-						(this.environments[env] as Environment) ?? {},
-						this.selectedEnvironment === env,
-					),
-			),
-		);
+
+		const directoryPath = element ? element.fullPath : this.workspaceRoot;
+		return Promise.resolve(this.scanDirectory(directoryPath));
 	}
 
-	refresh(): void {
-		this.loadConfig();
-	}
+	private scanDirectory(directoryPath: string): TreeNode[] {
+		if (!fs.existsSync(directoryPath)) {
+			return [];
+		}
 
-	selectEnvironment(environment: string) {
-		this.selectedEnvironment = environment;
-		this.context.globalState.update("selectedEnvironment", environment);
-		this.refresh();
+		const entries = fs.readdirSync(directoryPath, { withFileTypes: true });
+		const nodes: TreeNode[] = [];
+
+		for (const entry of entries) {
+			const fullPath = path.join(directoryPath, entry.name);
+			if (entry.isDirectory()) {
+				const childNodes = this.scanDirectory(fullPath);
+				if (childNodes.length > 0) {
+					nodes.push(new TreeNode(entry.name, fullPath, vscode.TreeItemCollapsibleState.Collapsed, childNodes));
+				}
+			} else if (entry.isFile() && (entry.name.endsWith('.graphql') || entry.name.endsWith('.gql'))) {
+				nodes.push(new TreeNode(entry.name, fullPath, vscode.TreeItemCollapsibleState.None, [], {
+					command: 'graph-man.open-file',
+					title: "Open File",
+					arguments: [fullPath]
+				}));
+			}
+		}
+
+		return nodes;
 	}
 }
 
-class TreeItem extends vscode.TreeItem {
+class TreeNode extends vscode.TreeItem {
+	children: TreeNode[];
+
 	constructor(
 		public readonly label: string,
-		public readonly details: Environment,
-		public readonly selected: boolean,
+		public readonly fullPath: string,
+		public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+		children: TreeNode[] = [],
+		public readonly command?: vscode.Command
 	) {
-		super(label, vscode.TreeItemCollapsibleState.None);
-		this.tooltip = `${this.label}: ${JSON.stringify(this.details)}`;
-		this.description = (details?.url as string | undefined) ?? "";
-		this.iconPath = new vscode.ThemeIcon(
-			selected ? "pass-filled" : "circle-large-outline",
-		);
+		super(label, collapsibleState);
+		this.children = children;
+		this.tooltip = `${this.label}`;
+		this.description = this.fullPath;
 	}
+}
+
+export function activate(/* context: vscode.ExtensionContext */) {
+	vscode.window.showInformationMessage(`Opening ${vscode.workspace.rootPath}`);
+	const workspaceRoot = vscode.workspace.rootPath || '';
+	const graphqlFilesProvider = new GraphqlFilesProvider(workspaceRoot);
+	vscode.window.registerTreeDataProvider('graphqlFiles', graphqlFilesProvider);
 }

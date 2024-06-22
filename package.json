@@ -52,10 +52,6 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "graph-man.refresh-header",
-        "title": "Graph Man: Refresh Header"
-      },
-      {
         "command": "graph-man.send-graphql",
         "title": "Graph Man: Send Graphql",
         "icon": "$(send)"

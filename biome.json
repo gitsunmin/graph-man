@@ -13,13 +13,5 @@
 	"formatter": {
 		"enabled": true,
 		"ignore": ["node_modules", "dist"]
-	},
-	"json": {
-		"formatter": {
-			"enabled": true
-		},
-		"linter": {
-			"enabled": true
-		}
 	}
 }
