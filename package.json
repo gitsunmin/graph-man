@@ -35,36 +35,47 @@
           "contextualTitle": "Graph Man Environment"
         },
         {
-          "id": "graph-man-graphqls",
-          "name": "Graphqls",
-          "type": "tree"
-        }
+									"id": "graph-man-graphqls",
+									"name": "Graphqls",
+									"contextualTitle": "Graph Man Graphqls"
+								}
       ]
     },
     "commands": [
       {
-        "command": "graph-man.show-graph-man",
-        "title": "Graph Man: Show Configuration"
-      },
-      {
-        "command": "graph-man.refresh-environment",
-        "title": "Graph Man: Refresh Environment",
-        "icon": "$(refresh)"
-      },
-      {
-        "command": "graph-man.send-graphql",
-        "title": "Graph Man: Send Graphql",
-        "icon": "$(send)"
-      }
+							"command": "graph-man.show-graph-man",
+							"title": "Graph Man: Show Configuration"
+						},
+						{
+							"command": "graph-man.refresh-environment",
+							"title": "Graph Man: Refresh Environment",
+							"icon": "$(refresh)"
+						},
+						{
+							"command": "graph-man.refresh-graphqls",
+							"title": "Graph Man: Refresh Graphqls",
+							"icon": "$(refresh)"
+						},
+						{
+							"command": "graph-man.send-graphql",
+							"title": "Graph Man: Send Graphql",
+							"icon": "$(send)"
+						}
     ],
     "menus": {
       "view/title": [
         {
-          "command": "graph-man.refresh-environment",
-          "icon": "$(refresh)",
-          "when": "view == graph-man-environment",
-          "group": "navigation"
-        }
+									"command": "graph-man.refresh-environment",
+									"icon": "$(refresh)",
+									"when": "view == graph-man-environment",
+									"group": "navigation"
+								},
+								{
+									"command": "graph-man.refresh-graphqls",
+									"icon": "$(refresh)",
+									"when": "view == graph-man-graphqls",
+									"group": "navigation"
+								}
       ],
       "editor/title": [
         {

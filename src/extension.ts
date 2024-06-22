@@ -29,7 +29,13 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
 			"graph-man.refresh-environment",
-			environmentTreeProvider.refresh,
+			() => environmentTreeProvider.refresh(),
+		),
+		vscode.commands.registerCommand(
+			"graph-man.refresh-graphqls",
+			() => {
+				graphqlFilesTreeProvider.refresh();
+			},
 		),
 
 		vscode.commands.registerCommand(

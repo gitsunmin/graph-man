@@ -48,6 +48,10 @@ export class GraphqlFilesProvider implements vscode.TreeDataProvider<TreeNode> {
 
 		return nodes;
 	}
+
+	refresh(): void {
+		this._onDidChangeTreeData.fire(null);
+	}
 }
 
 class TreeNode extends vscode.TreeItem {
