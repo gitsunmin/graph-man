@@ -11,7 +11,7 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 - [x] Test GraphQL Queries And Mutations
 - [x] Save Queries And Mutations
 - [ ] Load Schema From URL Or File
-- [ ] Settings For Custom Headers
+- [X] Settings For Custom Headers
 - [ ] Settings For Custom Variables
 
 

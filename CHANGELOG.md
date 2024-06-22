@@ -1,9 +1,18 @@
 # Change Log
+<!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
-All notable changes to the "graph-man" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.1.0] - 2024-06-22
 
-## [Unreleased]
+### Added
+
+- Show Graphql File List in `.graph-man` folder
+- Update Graph Man Logo on Activity Bar
+
+## [0.0.1] - 2024-06-21
+
+### Added
 
 - Initial release
+- Testable Graphql Queries And Mutations
+- Selectable Environments
