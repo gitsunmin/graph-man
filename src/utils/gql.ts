@@ -1,4 +1,4 @@
-import { E } from './fp/Either';
+import { E } from '../lib/fp/Either';
 
 const send = async ({
     query = '',
