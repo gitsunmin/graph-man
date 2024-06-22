@@ -21,10 +21,10 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "graph-man",
-          "title": "Graph Man",
-          "icon": "$(list-flat)"
-        }
+									"id": "graph-man",
+									"title": "Graph Man",
+									"icon": "icon.webp"
+								}
       ]
     },
     "views": {
