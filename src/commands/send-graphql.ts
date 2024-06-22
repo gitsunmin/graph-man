@@ -1,8 +1,8 @@
 import path from "node:path";
-import * as vscode from "vscode";
-import { loadConfig } from "../utils/config";
 import { P, match } from "ts-pattern";
+import * as vscode from "vscode";
 import { GQL } from "../lib/gql";
+import { loadConfig } from "../utils/config";
 
 export const sendGraphQL =
 	(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) =>

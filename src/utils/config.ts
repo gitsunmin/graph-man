@@ -1,6 +1,6 @@
 import { P, match } from "ts-pattern";
-import { readJSONSync } from "./file";
 import { E, type Either } from "../lib/fp/Either";
+import { readJSONSync } from "./file";
 
 export type Environment = {
 	url: string;

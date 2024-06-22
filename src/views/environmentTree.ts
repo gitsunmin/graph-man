@@ -1,6 +1,6 @@
-import * as vscode from "vscode";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import * as vscode from "vscode";
 import type { Environment } from "../utils/config";
 
 export class EnvironmentTreeProvider

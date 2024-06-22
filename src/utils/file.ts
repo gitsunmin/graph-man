@@ -13,10 +13,8 @@ export const readJSONSync = <T>(path: string): Option<T> => {
 
 export const readDirSync = (path: string): Option<string[]> => {
 	try {
-		return fs.existsSync(path)
-			? O.Some(fs.readdirSync(path))
-			: O.None();
+		return fs.existsSync(path) ? O.Some(fs.readdirSync(path)) : O.None();
 	} catch (error) {
 		return O.None();
 	}
-}
+};
