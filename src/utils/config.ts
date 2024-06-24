@@ -1,6 +1,7 @@
 import { P, match } from "ts-pattern";
 import { E, type Either } from "../lib/fp/Either";
 import { readJSONSync } from "./file";
+import { O } from '../lib/fp/Options';
 
 export type Environment = {
 	url: string;
@@ -13,9 +14,8 @@ export type GraphManConfig = {
 
 export const loadConfig = (path: string): Either<string, GraphManConfig> =>
 	match(readJSONSync<GraphManConfig>(path))
-		.with(P.nullish, () => E.Left("Config file not found"))
-		.with({ __tag: "None" }, () => E.Left("Config file is empty"))
-		.with({ value: { environment: P.nullish } }, () =>
+		.with(O.NONE, () => E.Left("Config file is empty"))
+		.with({ ...O.SOME, value: { environment: P.nullish } }, () =>
 			E.Left("Environment is not defined"),
 		)
 		.with(
@@ -30,6 +30,4 @@ export const loadConfig = (path: string): Either<string, GraphManConfig> =>
 			},
 			() => E.Left("Environment is not an object"),
 		)
-		.otherwise(({ value }) => {
-			return E.Right(value);
-		});
+		.otherwise(({ value }) => E.Right(value));

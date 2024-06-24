@@ -3,6 +3,7 @@ import { P, match } from "ts-pattern";
 import * as vscode from "vscode";
 import { GQL } from "../lib/gql";
 import { loadConfig } from "../utils/config";
+import { E } from '../lib/fp/Either';
 
 export const sendGraphQL =
 	(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) =>
@@ -18,12 +19,12 @@ export const sendGraphQL =
 		const config = loadConfig(configPath);
 
 		match(config)
-			.with({ __tag: "Left" }, ({ value: errorMessage }) => {
+			.with(E.LEFT, ({ value: errorMessage }) => {
 				vscode.window.showErrorMessage(errorMessage);
 			})
 			.with(
 				{
-					__tag: "Right",
+					...E.RIGHT,
 					value: {
 						environment: P.when(
 							(environment) => !!environment[selectedEnvironment],
@@ -40,10 +41,10 @@ export const sendGraphQL =
 						headers: {},
 					}).then((result) =>
 						match(result)
-							.with({ __tag: "Left" }, ({ value: errorMessage }) => {
+							.with(E.LEFT, ({ value: errorMessage }) => {
 								vscode.window.showErrorMessage(errorMessage as string);
 							})
-							.with({ __tag: "Right" }, ({ value }) => {
+							.with(E.RIGHT, ({ value }) => {
 								vscode.window.showInformationMessage(
 									`GQL success | endpoint: ${endpoint}`,
 								);
