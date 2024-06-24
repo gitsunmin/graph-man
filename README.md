@@ -10,17 +10,21 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 
 - [x] Test GraphQL Queries And Mutations
 - [x] Save Queries And Mutations
+- [x] Settings For Custom Headers
+- [x] Settings For Custom Variables
 - [ ] Load Schema From URL Or File
-- [X] Settings For Custom Headers
-- [ ] Settings For Custom Variables
+- [ ] Merge Queries And Mutations
 
 
 ## Usage
 
+![usage-video0](.docs/videos/usage-video0.gif)
+
 1. Install Graph Man Extension
 2. Create `.graph-man` folder in your project root
 3. Create Configration File (name is `.graph-man/config.json`)
-   1. Example: [config.json](.graph-man/config.json)
+   1. Example Config File: [config.json](.graph-man/config.json)
+   2. Example .graphql File: [test.graphql](.graph-man/example.graphql)
 4. Create Queries And Mutations Files (`.graph-man/test.graphql`)
 5. Select Your Environment to Side Bar
 ![usage0](.docs/images/usage0.png)
