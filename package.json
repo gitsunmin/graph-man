@@ -43,7 +43,7 @@
 		},
 		"commands": [
 			{
-				"command": "graph-man.show-graph-man",
+				"command": "graph-man.show-configuration",
 				"title": "Graph Man: Show Configuration"
 			},
 			{

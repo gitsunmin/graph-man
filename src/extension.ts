@@ -7,12 +7,14 @@ import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
 
 export function activate(context: vscode.ExtensionContext) {
+	const rootPath = vscode.workspace.rootPath || '';
+
 	const environmentTreeProvider = new EnvironmentTreeProvider(
 		context,
-		vscode.workspace.rootPath || "",
+		rootPath,
 	);
 	const graphqlFilesTreeProvider = new GraphqlFilesProvider(
-		path.join(vscode.workspace.rootPath || ""),
+		path.join(rootPath),
 	);
 
 	const environmentTreeview = vscode.window.createTreeView(
@@ -39,6 +41,12 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand(
 			"graph-man.send-graphql",
 			sendGraphQL(context, outputChannel),
+		),
+		vscode.commands.registerCommand(
+			'graph-man.show-configuration',
+			() => {
+				openFile(path.join(rootPath, '.graph-man/config.json'));
+			}
 		),
 		vscode.commands.registerCommand("graph-man.open-file", openFile),
 	);
