@@ -2,9 +2,13 @@ import path from "node:path";
 import * as vscode from "vscode";
 import { openFile } from "./commands/open-file";
 import { sendGraphQL } from "./commands/send-graphql";
-import outputChannel from "./utils/outputChannel";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
+import { Constants } from './constants';
+
+const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
+	Constants.System.DISPLAY_NAME,
+);
 
 export function activate(context: vscode.ExtensionContext) {
 	const rootPath = vscode.workspace.rootPath || '';
