@@ -1,6 +1,6 @@
 import path from "node:path";
 import * as vscode from "vscode";
-import { openFile } from "./commands/open-file";
+import { openFile } from "./utils/file";
 import { sendGraphQL } from "./commands/send-graphql";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
@@ -41,7 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand("graph-man.refresh-graphqls", () => {
 			graphqlFilesTreeProvider.refresh();
 		}),
-
 		vscode.commands.registerCommand(
 			"graph-man.send-graphql",
 			sendGraphQL(context, outputChannel),
