@@ -2,7 +2,7 @@
 	"name": "graph-man",
 	"displayName": "Graph Man",
 	"description": "This Extension is a Tester for GraphQL Queries and Mutations.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"icon": "icon.webp",
 	"engines": {
 		"vscode": "^1.89.0"

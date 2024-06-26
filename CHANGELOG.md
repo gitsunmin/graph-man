@@ -1,7 +1,7 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
-## [0.1.1]
+## [0.1.1] - 2024-06-26
 
 ### Added
 - Added new features to send Graphql including headers in config file
