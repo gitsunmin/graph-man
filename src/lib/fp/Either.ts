@@ -1,10 +1,9 @@
-import { match } from 'ts-pattern';
+import { match } from "ts-pattern";
 
 type Left<T> = {
 	value: T;
 	__tag: "Left";
 };
-
 
 type Right<T> = {
 	value: T;

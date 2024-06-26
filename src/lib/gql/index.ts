@@ -16,9 +16,10 @@ const send = async ({
 			await fetch(endpoint, {
 				method: "POST",
 				headers: {
-					Accept: 'application/graphql-response+json; charset=utf-8, application/json; charset=utf-8',
-					'Content-Type': 'application/json',
-					...headers
+					Accept:
+						"application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
+					"Content-Type": "application/json",
+					...headers,
 				},
 				body: JSON.stringify({
 					query,

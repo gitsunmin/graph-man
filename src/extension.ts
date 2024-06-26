@@ -1,17 +1,17 @@
 import path from "node:path";
 import * as vscode from "vscode";
-import { openFile } from "./utils/file";
 import { sendGraphQL } from "./commands/send-graphql";
+import { Constants } from "./constants";
+import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
-import { Constants } from './constants';
 
 const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
 	Constants.System.DISPLAY_NAME,
 );
 
 export function activate(context: vscode.ExtensionContext) {
-	const rootPath = vscode.workspace.rootPath || '';
+	const rootPath = vscode.workspace.rootPath || "";
 
 	const environmentTreeProvider = new EnvironmentTreeProvider(
 		context,
@@ -45,12 +45,9 @@ export function activate(context: vscode.ExtensionContext) {
 			"graph-man.send-graphql",
 			sendGraphQL(context, outputChannel),
 		),
-		vscode.commands.registerCommand(
-			'graph-man.show-configuration',
-			() => {
-				openFile(path.join(rootPath, '.graph-man/config.json'));
-			}
-		),
+		vscode.commands.registerCommand("graph-man.show-configuration", () => {
+			openFile(path.join(rootPath, ".graph-man/config.json"));
+		}),
 		vscode.commands.registerCommand("graph-man.open-file", openFile),
 	);
 

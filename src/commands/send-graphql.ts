@@ -1,9 +1,9 @@
 import path from "node:path";
 import { P, match } from "ts-pattern";
 import * as vscode from "vscode";
+import { E } from "../lib/fp/Either";
 import { GQL } from "../lib/gql";
 import { loadConfig } from "../utils/config";
-import { E } from '../lib/fp/Either';
 
 export const sendGraphQL =
 	(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) =>

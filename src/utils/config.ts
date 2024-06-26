@@ -1,7 +1,7 @@
 import { P, match } from "ts-pattern";
 import { E, type Either } from "../lib/fp/Either";
+import { O } from "../lib/fp/Options";
 import { readJSONSync } from "./file";
-import { O } from '../lib/fp/Options';
 
 export type Environment = {
 	url: string;

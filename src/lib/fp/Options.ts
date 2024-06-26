@@ -19,10 +19,10 @@ const PATTERN = {
 export const O = {
 	...PATTERN,
 	make: <T>(value: T): Option<T> => ({
-			value,
-			__tag: match(value)
-				.with(P.nullish, () => "None" as const)
-				.otherwise(() => "Some" as const),
+		value,
+		__tag: match(value)
+			.with(P.nullish, () => "None" as const)
+			.otherwise(() => "Some" as const),
 	}),
 	Some: <T>(value: T): Option<T> => O.make(value),
 	None: <T>(): Option<T> => ({ __tag: "None" }),

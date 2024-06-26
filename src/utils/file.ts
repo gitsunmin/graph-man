@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
 import * as fs from "node:fs";
+import * as vscode from "vscode";
 import { O, type Option } from "../lib/fp/Options";
 
 export const readJSONSync = <T>(path: string): Option<T> => {
