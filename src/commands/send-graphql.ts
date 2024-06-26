@@ -32,13 +32,13 @@ export const sendGraphQL =
 					},
 				},
 				({ value: { environment } }) => {
-					const { url: endpoint } = environment[selectedEnvironment];
+					const { url: endpoint, headers } = environment[selectedEnvironment];
 
 					GQL.send({
 						query,
 						variables: {},
 						endpoint,
-						headers: {},
+						headers,
 					}).then((result) =>
 						match(result)
 							.with(E.LEFT, ({ value: errorMessage }) => {

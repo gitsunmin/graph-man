@@ -15,7 +15,11 @@ const send = async ({
 		return E.Right(
 			await fetch(endpoint, {
 				method: "POST",
-				headers: { "Content-Type": "application/json", ...headers },
+				headers: {
+					Accept: 'application/graphql-response+json; charset=utf-8, application/json; charset=utf-8',
+					'Content-Type': 'application/json',
+					...headers
+				},
 				body: JSON.stringify({
 					query,
 					variables,

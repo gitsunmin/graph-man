@@ -5,7 +5,7 @@ import { O } from '../lib/fp/Options';
 
 export type Environment = {
 	url: string;
-	header: Record<string, string>;
+	headers: Record<string, string>;
 };
 
 export type GraphManConfig = {
