@@ -1,0 +1,3 @@
+[submodule "example/bun-graphql-server"]
+	path = example/bun-graphql-server
+	url = https://github.com/gitsunmin/bun-graphql-server.git
