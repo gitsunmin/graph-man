@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 		rootPath,
 	);
 	const graphqlFilesTreeProvider = new GraphqlFilesProvider(
-		path.join(rootPath, '.graph-man'),
+		path.join(rootPath, ".graph-man"),
 	);
 
 	const environmentTreeview = vscode.window.createTreeView(

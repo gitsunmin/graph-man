@@ -32,7 +32,8 @@ export const sendGraphQL =
 					},
 				},
 				({ value: { environment } }) => {
-					const { url: endpoint = '', headers = {} } = environment[selectedEnvironment] || {};
+					const { url: endpoint = "", headers = {} } =
+						environment[selectedEnvironment] || {};
 
 					GQL.send({
 						query,
@@ -46,7 +47,9 @@ export const sendGraphQL =
 
 						match(result)
 							.with(E.LEFT, () => {
-								vscode.window.showErrorMessage(`GQL error | endpoint: ${endpoint}`);
+								vscode.window.showErrorMessage(
+									`GQL error | endpoint: ${endpoint}`,
+								);
 							})
 							.with(E.RIGHT, () => {
 								vscode.window.showInformationMessage(
@@ -54,8 +57,7 @@ export const sendGraphQL =
 								);
 							})
 							.exhaustive();
-					}
-					);
+					});
 				},
 			)
 			.otherwise(() => vscode.window.showErrorMessage("Environment not found"));

@@ -2,7 +2,7 @@
 	"name": "graph-man",
 	"displayName": "Graph Man",
 	"description": "This Extension is a Tester for GraphQL Queries and Mutations.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"icon": "icon.webp",
 	"engines": {
 		"vscode": "^1.89.0"
@@ -11,6 +11,7 @@
 		"type": "git",
 		"url": "https://github.com/gitsunmin/graph-man.git"
 	},
+	"categories": ["Testing", "Other"],
 	"publisher": "gitsunmin",
 	"main": "./dist/extension.js",
 	"activationEvents": [
@@ -102,18 +103,18 @@
 		"publish": "vsce publish"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.8.2",
-		"@types/mocha": "^10.0.6",
-		"@types/node": "18.x",
+		"@biomejs/biome": "^1.8.3",
+		"@types/mocha": "^10.0.7",
+		"@types/node": "^20.14.9",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@types/vscode": "^1.89.0",
+		"@typescript-eslint/eslint-plugin": "^7.14.1",
+		"@typescript-eslint/parser": "^7.14.1",
 		"@vscode/test-cli": "^0.0.9",
 		"@vscode/test-electron": "^2.3.9",
-		"@typescript-eslint/eslint-plugin": "^7.7.1",
-		"@typescript-eslint/parser": "^7.7.1",
-		"eslint": "^8.57.0",
-		"esbuild": "^0.20.2",
+		"esbuild": "^0.21.5",
+		"eslint": "^9.6.0",
 		"npm-run-all": "^4.1.5",
 		"typescript": "5.3.3",
 		"vsce": "^2.15.0"
