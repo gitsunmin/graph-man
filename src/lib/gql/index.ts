@@ -1,6 +1,7 @@
+import { P, match } from 'ts-pattern';
 import { E } from "../fp/Either";
 
-const send = async ({
+const send = async <D = unknown, E = unknown>({
 	query = "",
 	variables = {},
 	endpoint,
@@ -12,8 +13,7 @@ const send = async ({
 	headers: Record<string, string>;
 }) => {
 	try {
-		return E.Right(
-			await fetch(endpoint, {
+		const response = await fetch(endpoint, {
 				method: "POST",
 				headers: {
 					Accept:
@@ -25,8 +25,11 @@ const send = async ({
 					query,
 					variables,
 				}),
-			}).then((res) => res.json()),
-		);
+		}).then((res) => res.json() as Promise<{ data: D, errors?: E | undefined }>);
+
+		return match(response)
+			.with({ errors: P.nonNullable }, E.Left)
+			.otherwise(E.Right);
 	} catch (error) {
 		return E.Left(error);
 	}

@@ -54,7 +54,9 @@ export function activate(context: vscode.ExtensionContext) {
 	environmentTreeview.onDidChangeSelection((e) => {
 		if (e.selection.length > 0) {
 			const selectedTreeItem = e.selection[0];
-			environmentTreeProvider.selectEnvironment(selectedTreeItem.label);
+			if (selectedTreeItem) {
+				environmentTreeProvider.selectEnvironment(selectedTreeItem.label);
+			}
 		}
 	});
 }

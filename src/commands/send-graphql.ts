@@ -32,27 +32,29 @@ export const sendGraphQL =
 					},
 				},
 				({ value: { environment } }) => {
-					const { url: endpoint, headers } = environment[selectedEnvironment];
+					const { url: endpoint = '', headers = {} } = environment[selectedEnvironment] || {};
 
 					GQL.send({
 						query,
 						variables: {},
 						endpoint,
 						headers,
-					}).then((result) =>
+					}).then((result) => {
+						outputChannel.show(true);
+						outputChannel.clear();
+						outputChannel.appendLine(JSON.stringify(result.value, null, 2));
+
 						match(result)
-							.with(E.LEFT, ({ value: errorMessage }) => {
-								vscode.window.showErrorMessage(errorMessage as string);
+							.with(E.LEFT, () => {
+								vscode.window.showErrorMessage(`GQL error | endpoint: ${endpoint}`);
 							})
-							.with(E.RIGHT, ({ value }) => {
+							.with(E.RIGHT, () => {
 								vscode.window.showInformationMessage(
 									`GQL success | endpoint: ${endpoint}`,
 								);
-								outputChannel.show(true);
-								outputChannel.clear();
-								outputChannel.appendLine(JSON.stringify(value, null, 2));
 							})
-							.exhaustive(),
+							.exhaustive();
+					}
 					);
 				},
 			)
