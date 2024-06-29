@@ -81,7 +81,7 @@
 				{
 					"command": "graph-man.send-graphql",
 					"group": "navigation",
-					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql'"
+					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
 				}
 			]
 		}
