@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 import { E } from "../lib/fp/Either";
 import { GQL } from "../lib/gql";
 import { loadConfig } from "../utils/config";
+import { Constants } from '../constants';
 
 export const sendGraphQL =
 	(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) =>
@@ -13,7 +14,7 @@ export const sendGraphQL =
 		const query = vscode.window.activeTextEditor?.document.getText() ?? "";
 		const configPath = path.join(
 			vscode.workspace.rootPath || "",
-			".graph-man/config.json",
+			Constants.Path.CONFIG_FILE_PATH,
 		);
 
 		const config = loadConfig(configPath);

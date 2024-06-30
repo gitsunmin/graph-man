@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 			sendGraphQL(context, outputChannel),
 		),
 		vscode.commands.registerCommand("graph-man.show-configuration", () => {
-			openFile(path.join(rootPath, ".graph-man/config.json"));
+			openFile(path.join(rootPath, Constants.Path.CONFIG_FILE_PATH));
 		}),
 		vscode.commands.registerCommand("graph-man.open-file", openFile),
 	);
