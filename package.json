@@ -45,6 +45,7 @@
 		"commands": [
 			{
 				"command": "graph-man.show-configuration",
+				"icon": "$(settings-gear)",
 				"title": "Graph Man: Show Configuration"
 			},
 			{
@@ -67,7 +68,11 @@
 			"view/title": [
 				{
 					"command": "graph-man.refresh-environment",
-					"icon": "$(refresh)",
+					"when": "view == graph-man-environment",
+					"group": "navigation"
+				},
+				{
+					"command": "graph-man.show-configuration",
 					"when": "view == graph-man-environment",
 					"group": "navigation"
 				},
