@@ -27,6 +27,9 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 5. Select Your Environment to Side Bar   
 6. Click the "paper airplane icon" on Right-Top  for Send Your "Query" Or "Mutation" on `.graph-man/**/*.grapql` file
 
+> Tip: If you don't include the `.graph-man/**/*` files in the project, you can add them to `.gitignore` for use.
+
+
 ## Example
 
 [here](https://github.com/gitsunmin/bun-graphql-server)    
