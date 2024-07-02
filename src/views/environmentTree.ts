@@ -1,8 +1,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as vscode from "vscode";
+import { Constants } from "../constants";
 import type { Environment } from "../utils/config";
-import { Constants } from '../constants';
 
 export class EnvironmentTreeProvider
 	implements vscode.TreeDataProvider<TreeItem>
@@ -25,13 +25,18 @@ export class EnvironmentTreeProvider
 	}
 
 	private loadConfig() {
-		const configPath = path.join(this.workspaceRoot, Constants.Path.CONFIG_FILE_PATH);
+		const configPath = path.join(
+			this.workspaceRoot,
+			Constants.Path.CONFIG_FILE_PATH,
+		);
 		if (fs.existsSync(configPath)) {
 			const configContent = fs.readFileSync(configPath, "utf-8");
 			this.environments = JSON.parse(configContent).environment;
 			this._onDidChangeTreeData.fire(undefined);
 		} else {
-			vscode.window.showErrorMessage(`${Constants.Path.CONFIG_FILE_PATH} file not found`);
+			vscode.window.showErrorMessage(
+				`${Constants.Path.CONFIG_FILE_PATH} file not found`,
+			);
 		}
 	}
 

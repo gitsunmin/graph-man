@@ -62,6 +62,10 @@
 				"command": "graph-man.send-graphql",
 				"title": "Graph Man: Send Graphql",
 				"icon": "$(send)"
+			},
+			{
+				"command": "graph-man.create-config-file",
+				"title": "Graph Man: Create Config File"
 			}
 		],
 		"menus": {

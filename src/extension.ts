@@ -1,5 +1,6 @@
 import path from "node:path";
 import * as vscode from "vscode";
+import { createConfigFile } from "./commands/create-config-file";
 import { sendGraphQL } from "./commands/send-graphql";
 import { Constants } from "./constants";
 import { openFile } from "./utils/file";
@@ -18,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 		rootPath,
 	);
 	const graphqlFilesTreeProvider = new GraphqlFilesProvider(
-		path.join(rootPath, ".graph-man"),
+		path.join(rootPath, Constants.Path.PACKAGE_PATH),
 	);
 
 	const environmentTreeview = vscode.window.createTreeView(
@@ -49,6 +50,13 @@ export function activate(context: vscode.ExtensionContext) {
 			openFile(path.join(rootPath, Constants.Path.CONFIG_FILE_PATH));
 		}),
 		vscode.commands.registerCommand("graph-man.open-file", openFile),
+		vscode.commands.registerCommand(
+			"graph-man.create-config-file",
+			createConfigFile({
+				rootPath,
+				forderName: Constants.Path.PACKAGE_PATH,
+			}),
+		),
 	);
 
 	environmentTreeview.onDidChangeSelection((e) => {

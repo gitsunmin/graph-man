@@ -1,5 +1,5 @@
-import System from "./System";
 import Path from "./Path";
+import System from "./System";
 
 export const Constants = {
 	System,
