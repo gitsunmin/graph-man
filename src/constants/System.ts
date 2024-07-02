@@ -1,3 +1,3 @@
 export default {
-	DISPLAY_NAME: "Graph Man",
+  DISPLAY_NAME: "Graph Man",
 };

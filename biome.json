@@ -12,6 +12,18 @@
 	},
 	"formatter": {
 		"enabled": true,
+		"indentStyle": "space",
+		"indentWidth": 2,
 		"ignore": ["node_modules", "dist"]
+	},
+	"json": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab",
+			"indentWidth": 2
+		},
+		"linter": {
+			"enabled": true
+		}
 	}
 }
