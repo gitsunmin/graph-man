@@ -28,6 +28,24 @@ export const openFile = (filePath: string) => {
   vscode.window.showTextDocument(fileUri);
 };
 
+export const createFile = (props: {
+  folderPath: string;
+  name: string;
+  content: string;
+}) => {
+  const { folderPath, name, content } = props;
+
+  try {
+    const filePath = path.join(folderPath, name);
+
+    fs.mkdirSync(folderPath, { recursive: true });
+    fs.writeFileSync(filePath, content, "utf8");
+    return E.Right(filePath);
+  } catch (error) {
+    return E.Left(error);
+  }
+};
+
 export const createJSON = (props: {
   filePath: string;
   name: string;

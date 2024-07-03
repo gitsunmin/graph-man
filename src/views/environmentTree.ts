@@ -1,7 +1,9 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { P, match } from "ts-pattern";
 import * as vscode from "vscode";
 import { Constants } from "../constants";
+import { O, type Option } from "../lib/fp/Options";
 import type { Environment } from "../utils/config";
 
 export class EnvironmentTreeProvider
@@ -68,6 +70,13 @@ export class EnvironmentTreeProvider
     this.selectedEnvironment = environment;
     this.context.globalState.update("selectedEnvironment", environment);
     this.refresh();
+  }
+
+  getCurrentEnvironmentUrl(): Option<string> {
+    return match(this.environments[this.selectedEnvironment as string])
+      .returnType<Option<string>>()
+      .with({ url: P.string }, ({ url }) => O.Some(url))
+      .otherwise(O.None);
   }
 }
 

@@ -1,8 +1,10 @@
 import path from "node:path";
 import * as vscode from "vscode";
 import { createConfigFile } from "./commands/create-config-file";
+import { loadSchema } from "./commands/load-schema";
 import { sendGraphQL } from "./commands/send-graphql";
 import { Constants } from "./constants";
+import { O } from "./lib/fp/Options";
 import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
@@ -35,6 +37,11 @@ export function activate(context: vscode.ExtensionContext) {
     graphqlFilesTreeProvider,
   );
 
+  const endpoint = O.getOrElse(
+    environmentTreeProvider.getCurrentEnvironmentUrl(),
+    "",
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("graph-man.refresh-environment", () =>
       environmentTreeProvider.refresh(),
@@ -56,6 +63,10 @@ export function activate(context: vscode.ExtensionContext) {
         rootPath,
         forderName: Constants.Path.PACKAGE_PATH,
       }),
+    ),
+    vscode.commands.registerCommand(
+      "graph-man.load-schema",
+      loadSchema({ rootPath, endpoint }),
     ),
   );
 

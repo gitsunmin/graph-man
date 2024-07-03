@@ -1,132 +1,137 @@
 {
-	"name": "graph-man",
-	"displayName": "Graph Man",
-	"description": "This Extension is a Tester for GraphQL Queries and Mutations.",
-	"version": "0.1.2",
-	"icon": "icon.webp",
-	"engines": {
-		"vscode": "^1.89.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/gitsunmin/graph-man.git"
-	},
-	"categories": ["Testing", "Other"],
-	"publisher": "gitsunmin",
-	"main": "./dist/extension.js",
-	"activationEvents": [
-		"onView:graph-man-environment",
-		"onView:graph-man-graphqls"
-	],
-	"contributes": {
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "graph-man",
-					"title": "Graph Man",
-					"icon": "icon.webp"
-				}
-			]
-		},
-		"views": {
-			"graph-man": [
-				{
-					"id": "graph-man-environment",
-					"name": "Environment",
-					"contextualTitle": "Graph Man Environment"
-				},
-				{
-					"id": "graph-man-graphqls",
-					"name": "Graphqls",
-					"contextualTitle": "Graph Man Graphqls"
-				}
-			]
-		},
-		"commands": [
-			{
-				"command": "graph-man.show-configuration",
-				"icon": "$(settings-gear)",
-				"title": "Graph Man: Show Configuration"
-			},
-			{
-				"command": "graph-man.refresh-environment",
-				"title": "Graph Man: Refresh Environment",
-				"icon": "$(refresh)"
-			},
-			{
-				"command": "graph-man.refresh-graphqls",
-				"title": "Graph Man: Refresh Graphqls",
-				"icon": "$(refresh)"
-			},
-			{
-				"command": "graph-man.send-graphql",
-				"title": "Graph Man: Send Graphql",
-				"icon": "$(send)"
-			},
-			{
-				"command": "graph-man.create-config-file",
-				"title": "Graph Man: Create Config File"
-			}
-		],
-		"menus": {
-			"view/title": [
-				{
-					"command": "graph-man.refresh-environment",
-					"when": "view == graph-man-environment",
-					"group": "navigation"
-				},
-				{
-					"command": "graph-man.show-configuration",
-					"when": "view == graph-man-environment",
-					"group": "navigation"
-				},
-				{
-					"command": "graph-man.refresh-graphqls",
-					"icon": "$(refresh)",
-					"when": "view == graph-man-graphqls",
-					"group": "navigation"
-				}
-			],
-			"editor/title": [
-				{
-					"command": "graph-man.send-graphql",
-					"group": "navigation",
-					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
-				}
-			]
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "bun run package",
-		"compile": "bun run check-types && bun run lint && bun esbuild.js",
-		"watch": "npm-run-all -p watch:*",
-		"watch:esbuild": "node esbuild.js --watch",
-		"watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-		"package": "bun run check-types && bun run lint && bun esbuild.js --production",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p . -w --outDir out",
-		"pretest": "bun run compile-tests && bun run compile && bun run lint",
-		"check-types": "tsc --noEmit",
-		"lint": "bunx @biomejs/biome check --write ./src",
-		"test": "vscode-test",
-		"publish": "vsce publish"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.8.3",
-		"@types/mocha": "^10.0.7",
-		"@types/node": "^20.14.9",
-		"@types/vscode": "^1.89.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.1",
-		"@typescript-eslint/parser": "^7.14.1",
-		"@vscode/test-cli": "^0.0.9",
-		"@vscode/test-electron": "^2.3.9",
-		"esbuild": "^0.21.5",
-		"eslint": "^9.6.0",
-		"npm-run-all": "^4.1.5",
-		"typescript": "5.3.3",
-		"vsce": "^2.15.0"
-	},
-	"dependencies": {
-		"ts-pattern": "^5.2.0"
-	}
+  "name": "graph-man",
+  "displayName": "Graph Man",
+  "description": "This Extension is a Tester for GraphQL Queries and Mutations.",
+  "version": "0.1.2",
+  "icon": "icon.webp",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gitsunmin/graph-man.git"
+  },
+  "categories": ["Testing", "Other"],
+  "publisher": "gitsunmin",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onView:graph-man-environment",
+    "onView:graph-man-graphqls"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "graph-man",
+          "title": "Graph Man",
+          "icon": "icon.webp"
+        }
+      ]
+    },
+    "views": {
+      "graph-man": [
+        {
+          "id": "graph-man-environment",
+          "name": "Environment",
+          "contextualTitle": "Graph Man Environment"
+        },
+        {
+          "id": "graph-man-graphqls",
+          "name": "Graphqls",
+          "contextualTitle": "Graph Man Graphqls"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "graph-man.show-configuration",
+        "icon": "$(settings-gear)",
+        "title": "Graph Man: Show Configuration"
+      },
+      {
+        "command": "graph-man.refresh-environment",
+        "title": "Graph Man: Refresh Environment",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "graph-man.refresh-graphqls",
+        "title": "Graph Man: Refresh Graphqls",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "graph-man.send-graphql",
+        "title": "Graph Man: Send Graphql",
+        "icon": "$(send)"
+      },
+      {
+        "command": "graph-man.create-config-file",
+        "title": "Graph Man: Create Config File"
+      },
+      {
+        "command": "graph-man.load-schema",
+        "title": "Graph Man: Load Schema"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "graph-man.refresh-environment",
+          "when": "view == graph-man-environment",
+          "group": "navigation"
+        },
+        {
+          "command": "graph-man.show-configuration",
+          "when": "view == graph-man-environment",
+          "group": "navigation"
+        },
+        {
+          "command": "graph-man.refresh-graphqls",
+          "icon": "$(refresh)",
+          "when": "view == graph-man-graphqls",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "graph-man.send-graphql",
+          "group": "navigation",
+          "when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run package",
+    "compile": "bun run check-types && bun run lint && bun esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "bun run check-types && bun run lint && bun esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "bun run compile-tests && bun run compile && bun run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "bunx @biomejs/biome check --write ./src",
+    "test": "vscode-test",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.9",
+    "@types/vscode": "^1.89.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.21.5",
+    "eslint": "^9.6.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "5.3.3",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "graphql": "^16.9.0",
+    "ts-pattern": "^5.2.0"
+  }
 }

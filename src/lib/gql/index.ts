@@ -25,15 +25,13 @@ const send = async <D = unknown, Err = { massege: string }>({
         query,
         variables,
       }),
-    }).then(
-      (res) => res.json() as Promise<{ data: D; errors?: Err | undefined }>,
-    );
+    }).then((res) => res.json() as Promise<{ data?: D; errors?: Err }>);
 
     return match(response)
       .with({ errors: P.nonNullable }, E.Left)
-      .otherwise(E.Right);
+      .otherwise((response) => E.Right(response as { data: D }));
   } catch (error) {
-    return E.Left(error);
+    return E.Left({ errors: [error as Error] });
   }
 };
 
