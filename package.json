@@ -115,8 +115,6 @@
 		"@biomejs/biome": "^1.8.3",
 		"@types/mocha": "^10.0.7",
 		"@types/node": "^20.14.9",
-		"@types/react": "^18.3.3",
-		"@types/react-dom": "^18.3.0",
 		"@types/vscode": "^1.89.0",
 		"@typescript-eslint/eslint-plugin": "^7.14.1",
 		"@typescript-eslint/parser": "^7.14.1",
@@ -129,8 +127,6 @@
 		"vsce": "^2.15.0"
 	},
 	"dependencies": {
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
 		"ts-pattern": "^5.2.0"
 	}
 }
