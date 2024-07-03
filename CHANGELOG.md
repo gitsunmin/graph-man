@@ -1,6 +1,15 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.2.0] - 2024-07-04
+### Added
+- Added show configuration Button on Environment View 
+- Added Command "Create Config File" to the project
+- Added Command "Load Schema"
+
+### Changed
+- update [README.md](README.md)
+
 ## [0.1.2] - 2024-06-20
 
 ### Added
