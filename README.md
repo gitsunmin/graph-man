@@ -13,6 +13,8 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 - [x] Settings For Custom Headers
 - [x] Load Schema From URL
 - [ ] Merge Fragments into Query
+- [ ] Schema Based GraphQL IntelliSense
+- [ ] Autofill fields
 
 ## Usage
 
