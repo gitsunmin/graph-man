@@ -31,4 +31,25 @@ export const E = {
       .with(PATTERN.LEFT, (left) => E.Left(fn(left.value)))
       .with(PATTERN.RIGHT, (right) => right)
       .exhaustive(),
+  flatMap: <L, R, T>(
+    either: Either<L, R>,
+    fn: (value: R) => Either<L, T>,
+  ): Either<L, T> =>
+    match(either)
+      .with(PATTERN.LEFT, (left) => left)
+      .with(PATTERN.RIGHT, (right) => fn(right.value))
+      .exhaustive(),
+  isLeft: <L, R>(either: Either<L, R>): either is Left<L> =>
+    either.__tag === "Left",
+  isRight: <L, R>(either: Either<L, R>): either is Right<R> =>
+    either.__tag === "Right",
+  fold: <L, R, T>(
+    either: Either<L, R>,
+    ifLeft: (value: L) => T,
+    ifRight: (value: R) => T,
+  ): T =>
+    match(either)
+      .with(PATTERN.LEFT, (left) => ifLeft(left.value))
+      .with(PATTERN.RIGHT, (right) => ifRight(right.value))
+      .exhaustive(),
 };
