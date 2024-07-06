@@ -15,14 +15,14 @@ export const createConfigFile = (props: Props) => () => {
   const JSON_CONTENTS = {
     environment: {
       dev: {
-        url: "https://dev.example.com/graphql",
+        url: "http://localhost:3000/graphql",
         headers: {
           Cookies: "cookie1=value1; cookie2=value2",
           Authorization: "Bearer token",
         },
       },
       prod: {
-        url: "https://prod.example.com/graphql",
+        url: "http://localhost:3200/graphql",
         headers: {},
       },
     },
