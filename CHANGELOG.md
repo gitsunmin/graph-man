@@ -1,6 +1,13 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.2.1] - 2024-07-07
+
+### Changed
+- Changed Graph Man Logo Icon
+- Changed [README.md](README.md)
+- Changed Link on create-file Command
+
 ## [0.2.0] - 2024-07-04
 ### Added
 - Added show configuration Button on Environment View 
