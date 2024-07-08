@@ -1,4 +1,10 @@
-export default {
+const NAMES = {
   PACKAGE_PATH: ".graph-man",
-  CONFIG_FILE_PATH: ".graph-man/config.json",
+  CONFIG_FILE_NAME: "config.json",
+  SCHEMA_FILE_NAME: "schema.graphql",
+};
+
+export default {
+  ...NAMES,
+  CONFIG_FILE_PATH: `${NAMES.PACKAGE_PATH}/${NAMES.CONFIG_FILE_NAME}`,
 };

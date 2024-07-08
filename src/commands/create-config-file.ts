@@ -1,6 +1,7 @@
 import * as path from "node:path";
 import { match } from "ts-pattern";
 import * as vscode from "vscode";
+import { Constants } from "../constants";
 import { E } from "../lib/fp/Either";
 import { createJSON } from "../utils/file";
 
@@ -30,7 +31,7 @@ export const createConfigFile = (props: Props) => () => {
 
   const createdJSON = createJSON({
     filePath: path.join(rootPath, forderName),
-    name: "config.json",
+    name: Constants.Path.CONFIG_FILE_NAME,
     content: JSON_CONTENTS,
   });
 

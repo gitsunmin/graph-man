@@ -33,7 +33,7 @@ export const loadSchema = (props: Props) => async () => {
         const schemaSDL = printSchema(schema);
         return createFile({
           folderPath: `${rootPath}/${Constants.Path.PACKAGE_PATH}/__schema__`,
-          name: "schema.graphql",
+          name: Constants.Path.SCHEMA_FILE_NAME,
           content: schemaSDL,
         });
       })

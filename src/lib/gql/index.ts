@@ -27,7 +27,7 @@ const send = async <D = unknown, Err = { massege: string }>({
       }),
     }).then((res) => res.json() as Promise<{ data?: D; errors?: Err }>);
 
-    return match(response)
+    return match<{ data?: D; errors?: Err }>(response)
       .with({ errors: P.nonNullable }, E.Left)
       .otherwise((response) => E.Right(response as { data: D }));
   } catch (error) {
