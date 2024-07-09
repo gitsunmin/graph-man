@@ -68,6 +68,10 @@
 				"title": "Graph Man: Create Config File"
 			},
 			{
+				"command": "graph-man.create-example-graphql-file",
+				"title": "Graph Man: Create Example GraphQL File"
+			},
+			{
 				"command": "graph-man.load-schema",
 				"title": "Graph Man: Load Schema"
 			}

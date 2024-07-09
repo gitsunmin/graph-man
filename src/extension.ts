@@ -1,6 +1,7 @@
 import path from "node:path";
 import * as vscode from "vscode";
 import { createConfigFile } from "./commands/create-config-file";
+import { createExampleGraphqlFile } from "./commands/create-example-graphql-file";
 import { loadSchema } from "./commands/load-schema";
 import { sendGraphQL } from "./commands/send-graphql";
 import { Constants } from "./constants";
@@ -63,6 +64,14 @@ export function activate(context: vscode.ExtensionContext) {
         rootPath,
         forderName: Constants.Path.PACKAGE_PATH,
       }),
+    ),
+    vscode.commands.registerCommand(
+      "graph-man.create-example-graphql-file",
+      createExampleGraphqlFile({
+        forderName: Constants.Path.PACKAGE_PATH,
+        rootPath,
+      }),
+      // loadSchema({ rootPath, endpoint }),
     ),
     vscode.commands.registerCommand(
       "graph-man.load-schema",
