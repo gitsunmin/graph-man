@@ -9,6 +9,7 @@ import { O } from "./lib/fp/Options";
 import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
+import { createStarterPack } from './commands/create-starter-pack';
 
 const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
   Constants.System.DISPLAY_NAME,
@@ -71,7 +72,13 @@ export function activate(context: vscode.ExtensionContext) {
         forderName: Constants.Path.PACKAGE_PATH,
         rootPath,
       }),
-      // loadSchema({ rootPath, endpoint }),
+    ),
+    vscode.commands.registerCommand(
+      "graph-man.create-starter-pack",
+      createStarterPack({
+        forderName: Constants.Path.PACKAGE_PATH,
+        rootPath,
+      }),
     ),
     vscode.commands.registerCommand(
       "graph-man.load-schema",

@@ -72,6 +72,10 @@
 				"title": "Graph Man: Create Example GraphQL File"
 			},
 			{
+				"command": "graph-man.create-starter-pack",
+				"title": "Graph Man: Create Starter Pack"
+			},
+			{
 				"command": "graph-man.load-schema",
 				"title": "Graph Man: Load Schema"
 			}
