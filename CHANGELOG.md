@@ -1,6 +1,10 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.3.1] - 2024-07-11
+### Updated
+- Updated Log Message when the schema is loaded for fix error
+
 ## [0.3.0] - 2024-07-11
 
 ### Added
