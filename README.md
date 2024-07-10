@@ -32,7 +32,7 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 > Tip: If you don't include the `.graph-man/**/*` files in the project, you can add them to `.gitignore` for use.
 
 ## Commands
-- `Graph Man: Show Configuratio`: `.graph-man/config.json` file will be opened
+- `Graph Man: Show configuration`: `.graph-man/config.json` file will be opened
 - `Graph Man: Refresh Environment`: Refresh Environment from `.graph-man/config.json`
 - `Graph Man: Refresh Graphqls`: Refresh GraphQL Files from `.graph-man/**/*.graphql` and `.graph-man/**/*.gql`
 - `Graph Man: Send Graphql`: Send GraphQL Query or Mutation
@@ -45,4 +45,4 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 ## Example
 
 [here](https://github.com/gitsunmin/bun-graphql-server)    
-It's a "graphql-server" that uses "graph-man." You can learn more about how to use it in this project.
+It's a "graphql-server" that uses "graph-man". You can learn more about how to use it in this project.
