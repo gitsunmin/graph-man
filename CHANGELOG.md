@@ -1,6 +1,18 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.3.0] - 2024-07-11
+
+### Added
+- Added Command "Create Example GraphQL File"
+- Added Command "Create Starter Pack"
+- Added Command "Merge Fragments into Query"
+- Added Button in Environment View that load schema
+- Added Button in Editor Toolbar that merge fragments into query
+
+### Changed
+- Changed [README.md](README.md)
+
 ## [0.2.1] - 2024-07-07
 
 ### Changed

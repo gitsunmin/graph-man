@@ -2,7 +2,7 @@
 	"name": "graph-man",
 	"displayName": "Graph Man",
 	"description": "This Extension is a Tester for GraphQL Queries and Mutations.",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"icon": "icon.webp",
 	"engines": {
 		"vscode": "^1.89.0"
@@ -46,8 +46,8 @@
 		"commands": [
 			{
 				"command": "graph-man.show-configuration",
-				"icon": "$(settings-gear)",
-				"title": "Graph Man: Show Configuration"
+				"title": "Graph Man: Show Configuration",
+				"icon": "$(settings-gear)"
 			},
 			{
 				"command": "graph-man.refresh-environment",
@@ -78,11 +78,13 @@
 			},
 			{
 				"command": "graph-man.load-schema",
-				"title": "Graph Man: Load Schema"
+				"title": "Graph Man: Load Schema",
+				"icon": "$(cloud-download)"
 			},
 			{
 				"command": "graph-man.merge-fragments-into-query",
-				"title": "Graph Man: Merge Fragments into Query"
+				"title": "Graph Man: Merge Fragments into Query",
+				"icon": "$(combine)"
 			}
 		],
 		"menus": {
@@ -98,6 +100,11 @@
 					"group": "navigation"
 				},
 				{
+					"command": "graph-man.load-schema",
+					"when": "view == graph-man-environment",
+					"group": "navigation"
+				},
+				{
 					"command": "graph-man.refresh-graphqls",
 					"icon": "$(refresh)",
 					"when": "view == graph-man-graphqls",
@@ -107,6 +114,11 @@
 			"editor/title": [
 				{
 					"command": "graph-man.send-graphql",
+					"group": "navigation",
+					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
+				},
+				{
+					"command": "graph-man.merge-fragments-into-query",
 					"group": "navigation",
 					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
 				}
