@@ -2,15 +2,15 @@ import path from "node:path";
 import * as vscode from "vscode";
 import { createConfigFile } from "./commands/create-config-file";
 import { createExampleGraphqlFile } from "./commands/create-example-graphql-file";
+import { createStarterPack } from "./commands/create-starter-pack";
 import { loadSchema } from "./commands/load-schema";
+import { mergeFragmentsIntoQuery } from "./commands/merge-fragments-into-query";
 import { sendGraphQL } from "./commands/send-graphql";
 import { Constants } from "./constants";
 import { O } from "./lib/fp/Options";
 import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
-import { createStarterPack } from './commands/create-starter-pack';
-import { mergeFragmentsIntoQuery } from './commands/merge-fragments-into-query';
 
 const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
   Constants.System.DISPLAY_NAME,
