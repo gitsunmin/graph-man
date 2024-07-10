@@ -83,7 +83,8 @@
 			},
 			{
 				"command": "graph-man.merge-fragments-into-query",
-				"title": "Graph Man: Merge Fragments into Query"
+				"title": "Graph Man: Merge Fragments into Query",
+				"icon": "$(combine)"
 			}
 		],
 		"menus": {
@@ -113,6 +114,11 @@
 			"editor/title": [
 				{
 					"command": "graph-man.send-graphql",
+					"group": "navigation",
+					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
+				},
+				{
+					"command": "graph-man.merge-fragments-into-query",
 					"group": "navigation",
 					"when": "resource =~ /.graph-man/ && resourceExtname == '.graphql' || resourceExtname == '.gql'"
 				}
