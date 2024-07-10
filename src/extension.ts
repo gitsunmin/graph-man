@@ -10,6 +10,7 @@ import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
 import { createStarterPack } from './commands/create-starter-pack';
+import { mergeFragmentsIntoQuery } from './commands/merge-fragments-into-query';
 
 const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
   Constants.System.DISPLAY_NAME,
@@ -83,6 +84,10 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       "graph-man.load-schema",
       loadSchema({ rootPath, endpoint }),
+    ),
+    vscode.commands.registerCommand(
+      "graph-man.merge-fragments-into-query",
+      mergeFragmentsIntoQuery(`${rootPath}/${Constants.Path.SCHEMA_FILE_PATH}`),
     ),
   );
 

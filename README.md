@@ -12,7 +12,7 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 - [x] Save Queries And Mutations
 - [x] Settings For Custom Headers
 - [x] Load Schema From URL
-- [ ] Merge Fragments into Query
+- [x] Merge Fragments into Query
 - [ ] Schema Based GraphQL IntelliSense
 - [ ] Autofill fields
 
@@ -40,6 +40,7 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 - `Graph Man: Create Config File`: Create `.graph-man/config.json` 
 - `Graph Man: Create Example GraphQL Files`: Create Example GraphQL Files in `.graph-man` folder
 - `Graph Man: Create Starter Pack`: Create Starter Pack in `.graph-man` folder (Execute `Create Config File` and `Create Example GraphQL Files`)
+- `Graph Man: Merge Fragments into Query`: Merges the Fragments of Query currently displayed on the screen.
 
 ## Example
 

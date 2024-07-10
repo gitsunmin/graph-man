@@ -20,6 +20,7 @@
 		"noUncheckedIndexedAccess": true,
 		"noUnusedLocals": true,
 		"useUnknownInCatchVariables": true,
+		"esModuleInterop": true
 	},
 	"exclude": [
 		"node_modules",

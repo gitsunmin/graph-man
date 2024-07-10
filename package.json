@@ -16,7 +16,8 @@
 	"main": "./dist/extension.js",
 	"activationEvents": [
 		"onView:graph-man-environment",
-		"onView:graph-man-graphqls"
+		"onView:graph-man-graphqls",
+		"onCommand:graph-man.merge-fragments-into-query"
 	],
 	"contributes": {
 		"viewsContainers": {
@@ -78,6 +79,10 @@
 			{
 				"command": "graph-man.load-schema",
 				"title": "Graph Man: Load Schema"
+			},
+			{
+				"command": "graph-man.merge-fragments-into-query",
+				"title": "Graph Man: Merge Fragments into Query"
 			}
 		],
 		"menus": {
