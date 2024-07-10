@@ -46,8 +46,8 @@
 		"commands": [
 			{
 				"command": "graph-man.show-configuration",
-				"icon": "$(settings-gear)",
-				"title": "Graph Man: Show Configuration"
+				"title": "Graph Man: Show Configuration",
+				"icon": "$(settings-gear)"
 			},
 			{
 				"command": "graph-man.refresh-environment",
@@ -78,7 +78,8 @@
 			},
 			{
 				"command": "graph-man.load-schema",
-				"title": "Graph Man: Load Schema"
+				"title": "Graph Man: Load Schema",
+				"icon": "$(cloud-download)"
 			},
 			{
 				"command": "graph-man.merge-fragments-into-query",
@@ -94,6 +95,11 @@
 				},
 				{
 					"command": "graph-man.show-configuration",
+					"when": "view == graph-man-environment",
+					"group": "navigation"
+				},
+				{
+					"command": "graph-man.load-schema",
 					"when": "view == graph-man-environment",
 					"group": "navigation"
 				},
