@@ -15,6 +15,16 @@ export const readJSONSync = <T>(path: string): Option<T> => {
   }
 };
 
+export const readFileSync = <T>(path: string): Option<T> => {
+  try {
+    return fs.existsSync(path)
+      ? O.Some(fs.readFileSync(path, "utf-8") as T)
+      : O.None();
+  } catch (error) {
+    return O.None();
+  }
+};
+
 export const readDirSync = (path: string): Option<string[]> => {
   try {
     return fs.existsSync(path) ? O.Some(fs.readdirSync(path)) : O.None();
