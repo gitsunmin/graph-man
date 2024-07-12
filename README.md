@@ -34,16 +34,18 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 
 > A list of commands that you can search for and use in the Command Palette.
 
+| Command                                   | Description                                                                |
+|-------------------------------------------|----------------------------------------------------------------------------|
+| `Graph Man: Show configuration`           | `.graph-man/config.json` file will be opened                               |
+| `Graph Man: Refresh Environment`          | Refresh Environment from `.graph-man/config.json`                          |
+| `Graph Man: Refresh Graphqls`             | Refresh GraphQL Files from `.graph-man/**/*.graphql` and `.graph-man/**/*.gql` |
+| `Graph Man: Send Graphql`                 | Send GraphQL Query or Mutation                                             |
+| `Graph Man: Load Schem`                   | Load Schema from URL                                                       |
+| `Graph Man: Create Config File`           | Create `.graph-man/config.json`                                            |
+| `Graph Man: Create Example GraphQL Files` | Create Example GraphQL Files in `.graph-man` folder                        |
+| `Graph Man: Create Starter Pack`          | Create Starter Pack in `.graph-man` folder (Execute `Create Config File` and `Create Example GraphQL Files`) |
+| `Graph Man: Merge Fragments into Query`   | Merges the Fragments of Query currently displayed on the screen.           |
 
-- `Graph Man: Show configuration`: `.graph-man/config.json` file will be opened
-- `Graph Man: Refresh Environment`: Refresh Environment from `.graph-man/config.json`
-- `Graph Man: Refresh Graphqls`: Refresh GraphQL Files from `.graph-man/**/*.graphql` and `.graph-man/**/*.gql`
-- `Graph Man: Send Graphql`: Send GraphQL Query or Mutation
-- `Graph Man: Load Schem`: Load Schema from URL
-- `Graph Man: Create Config File`: Create `.graph-man/config.json` 
-- `Graph Man: Create Example GraphQL Files`: Create Example GraphQL Files in `.graph-man` folder
-- `Graph Man: Create Starter Pack`: Create Starter Pack in `.graph-man` folder (Execute `Create Config File` and `Create Example GraphQL Files`)
-- `Graph Man: Merge Fragments into Query`: Merges the Fragments of Query currently displayed on the screen.
 
 ## Example
 
