@@ -21,13 +21,23 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 ## Usage
 
 1. Install Graph Man Extension
-2. Use `Create Starter Pack` Command
+2. Use `Create Starter Pack` Command in Command Palette
 3. Click the `Graph Man` icon on the sidebar.
 4. Modify `url` and `headers` in the `config.json` file to your GraphQL server.
 5. Click the `Paper Airplane Icon` button in the upper right corner of the `**.*.graphql` file.
 
 > Tip: If you want to use `Graph Man` personally in your project, you can use it by adding `/.graph-man/` to `.gitignore`.
  
+## Buttoens
+| Button | position | Description |
+|--------|----------|-------------|
+| Send GraphQL | Editor Action | for Send GraphQL Query or Mutation |
+| Merge Fragments into Query | Editor Action | for Merges the Fragments of Query currently displayed on the screen. |
+| Load Schema From URL | view Actions (Environment View) | for Load Schema from URL |
+| Refresh Environment | view Actions (Environment View) | for Refresh Environment |
+| Show Configuration File | view Actions (Environment View) | for Show Configuration File |
+| Refresh Graphqls | view Actions (GraphQL View) | for Refresh GraphQL Tree |
+
 ## Commands
 
 > A list of commands that you can search for and use in the Command Palette.
