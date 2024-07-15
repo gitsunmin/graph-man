@@ -6,7 +6,7 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 
 ## Layout
 
-![Layout](.docs/images/layout.png)
+![Layout](.docs/images/layout.webp)
 
 ## Features
 
