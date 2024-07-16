@@ -61,7 +61,7 @@
 			},
 			{
 				"command": "graph-man.send-graphql",
-				"title": "Graph Man: Send Graphql",
+				"title": "Graph Man: Send GraphQL",
 				"icon": "$(send)"
 			},
 			{
