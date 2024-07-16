@@ -43,8 +43,7 @@ export const sendGraphQL =
             headers,
           }).then((result) => {
             outputChannel.show(true);
-            outputChannel.clear();
-            outputChannel.appendLine(JSON.stringify(result.value, null, 2));
+            outputChannel.replace(JSON.stringify(result.value, null, 2));
 
             match(result)
               .with(E.LEFT, () => {
