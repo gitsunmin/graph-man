@@ -1,7 +1,7 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
-## [0.3.1] - 2024-07-16
+## [0.3.2] - 2024-07-16
 ### Changed
 - Changed [README.md](README.md)
 
