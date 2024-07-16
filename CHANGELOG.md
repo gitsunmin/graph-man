@@ -1,6 +1,14 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.3.1] - 2024-07-16
+### Changed
+- Changed [README.md](README.md)
+
+### Fixed
+- Fixed issues not shown in Output on first run of Send GraphQL command (#5)
+- Fixed typo in Graph Man command title ("Graph Man: Send Graphql" to "Graph Man: Send GraphQL")
+
 ## [0.3.1] - 2024-07-11
 ### Changed
 - Updated Log Message when the schema is loaded for fix error

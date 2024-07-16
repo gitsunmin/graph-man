@@ -2,7 +2,7 @@
 	"name": "graph-man",
 	"displayName": "Graph Man",
 	"description": "This Extension is a Tester for GraphQL Queries and Mutations.",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"icon": "icon.webp",
 	"engines": {
 		"vscode": "^1.89.0"
@@ -149,7 +149,7 @@
 		"@typescript-eslint/parser": "^7.14.1",
 		"@vscode/test-cli": "^0.0.9",
 		"@vscode/test-electron": "^2.3.9",
-		"esbuild": "^0.21.5",
+		"esbuild": "^0.23.0",
 		"eslint": "^9.6.0",
 		"npm-run-all": "^4.1.5",
 		"typescript": "5.3.3",
