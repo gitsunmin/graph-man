@@ -7,7 +7,6 @@ import { loadSchema } from "./commands/load-schema";
 import { mergeFragmentsIntoQuery } from "./commands/merge-fragments-into-query";
 import { sendGraphQL } from "./commands/send-graphql";
 import { Constants } from "./constants";
-import { O } from "./lib/fp/Options";
 import { openFile } from "./utils/file";
 import { EnvironmentTreeProvider } from "./views/environmentTree";
 import { GraphqlFilesProvider } from "./views/graphqlsTree";
@@ -16,8 +15,9 @@ const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
   Constants.System.DISPLAY_NAME,
 );
 
+const rootPath = vscode.workspace.rootPath || "";
+
 export function activate(context: vscode.ExtensionContext) {
-  const rootPath = vscode.workspace.rootPath || "";
 
   const environmentTreeProvider = new EnvironmentTreeProvider(
     context,
@@ -39,12 +39,6 @@ export function activate(context: vscode.ExtensionContext) {
     "graph-man-graphqls",
     graphqlFilesTreeProvider,
   );
-
-  const endpoint = O.getOrElse(
-    environmentTreeProvider.getCurrentEnvironmentUrl(),
-    "",
-  );
-
   context.subscriptions.push(
     vscode.commands.registerCommand("graph-man.refresh-environment", () =>
       environmentTreeProvider.refresh(),
@@ -83,11 +77,11 @@ export function activate(context: vscode.ExtensionContext) {
     ),
     vscode.commands.registerCommand(
       "graph-man.load-schema",
-      loadSchema({ rootPath, endpoint }),
+      loadSchema({ context, rootPath }),
     ),
     vscode.commands.registerCommand(
       "graph-man.merge-fragments-into-query",
-      mergeFragmentsIntoQuery(`${rootPath}/${Constants.Path.SCHEMA_FILE_PATH}`),
+      mergeFragmentsIntoQuery(path.join(rootPath, Constants.Path.SCHEMA_FILE_PATH)),
     ),
   );
 

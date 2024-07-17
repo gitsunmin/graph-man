@@ -4,20 +4,29 @@ import {
   getIntrospectionQuery,
   printSchema,
 } from "graphql";
-import { match } from "ts-pattern";
+import { match, P } from "ts-pattern";
 import * as vscode from "vscode";
 import { Constants } from "../constants";
 import { E } from "../lib/fp/Either";
 import { GQL } from "../lib/gql";
 import { createFile } from "../utils/file";
+import { loadConfig } from '../utils/config';
+import path from 'node:path';
 
 type Props = {
+  context: vscode.ExtensionContext
   rootPath: string;
-  endpoint: string;
 };
 
 export const loadSchema = (props: Props) => async () => {
-  const { rootPath, endpoint } = props;
+  const { context, rootPath } = props;
+
+  const config = loadConfig(path.join(rootPath, Constants.Path.CONFIG_FILE_PATH));
+  const selectedEnvironment = (context.globalState.get("selectedEnvironment") ?? '') as string;
+
+  const endpoint = match(config)
+    .with({ ...E.RIGHT, value: { environment: P.nonNullable } }, ({ value: { environment } }) => environment[selectedEnvironment]?.url ?? '')
+    .otherwise(() => '');
 
   try {
     const response = await GQL.send<IntrospectionQuery>({

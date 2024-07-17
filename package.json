@@ -17,7 +17,8 @@
 	"activationEvents": [
 		"onView:graph-man-environment",
 		"onView:graph-man-graphqls",
-		"onCommand:graph-man.merge-fragments-into-query"
+		"onCommand:graph-man.merge-fragments-into-query",
+		"onCommand:graph-man.load-schema"
 	],
 	"contributes": {
 		"viewsContainers": {
