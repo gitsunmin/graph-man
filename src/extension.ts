@@ -18,7 +18,6 @@ const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
 const rootPath = vscode.workspace.rootPath || "";
 
 export function activate(context: vscode.ExtensionContext) {
-
   const environmentTreeProvider = new EnvironmentTreeProvider(
     context,
     rootPath,
@@ -81,7 +80,9 @@ export function activate(context: vscode.ExtensionContext) {
     ),
     vscode.commands.registerCommand(
       "graph-man.merge-fragments-into-query",
-      mergeFragmentsIntoQuery(path.join(rootPath, Constants.Path.SCHEMA_FILE_PATH)),
+      mergeFragmentsIntoQuery(
+        path.join(rootPath, Constants.Path.SCHEMA_FILE_PATH),
+      ),
     ),
   );
 
