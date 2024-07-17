@@ -28,8 +28,8 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 
 > Tip: If you want to use `Graph Man` personally in your project, you can use it by adding `/.graph-man/` to `.gitignore`.
  
-## Buttoens
-| Button | position | Description |
+## Buttons
+| Button | Position | Description |
 |--------|----------|-------------|
 | Send GraphQL | Editor Action | for Send GraphQL Query or Mutation |
 | Merge Fragments into Query | Editor Action | for Merges the Fragments of Query currently displayed on the screen. |
