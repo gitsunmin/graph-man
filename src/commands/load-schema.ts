@@ -1,32 +1,39 @@
+import path from "node:path";
 import {
   type IntrospectionQuery,
   buildClientSchema,
   getIntrospectionQuery,
   printSchema,
 } from "graphql";
-import { match, P } from "ts-pattern";
+import { P, match } from "ts-pattern";
 import * as vscode from "vscode";
 import { Constants } from "../constants";
 import { E } from "../lib/fp/Either";
 import { GQL } from "../lib/gql";
+import { loadConfig } from "../utils/config";
 import { createFile } from "../utils/file";
-import { loadConfig } from '../utils/config';
-import path from 'node:path';
 
 type Props = {
-  context: vscode.ExtensionContext
+  context: vscode.ExtensionContext;
   rootPath: string;
 };
 
 export const loadSchema = (props: Props) => async () => {
   const { context, rootPath } = props;
 
-  const config = loadConfig(path.join(rootPath, Constants.Path.CONFIG_FILE_PATH));
-  const selectedEnvironment = (context.globalState.get("selectedEnvironment") ?? '') as string;
+  const config = loadConfig(
+    path.join(rootPath, Constants.Path.CONFIG_FILE_PATH),
+  );
+  const selectedEnvironment = (context.globalState.get("selectedEnvironment") ??
+    "") as string;
 
   const endpoint = match(config)
-    .with({ ...E.RIGHT, value: { environment: P.nonNullable } }, ({ value: { environment } }) => environment[selectedEnvironment]?.url ?? '')
-    .otherwise(() => '');
+    .with(
+      { ...E.RIGHT, value: { environment: P.nonNullable } },
+      ({ value: { environment } }) =>
+        environment[selectedEnvironment]?.url ?? "",
+    )
+    .otherwise(() => "");
 
   try {
     const response = await GQL.send<IntrospectionQuery>({
