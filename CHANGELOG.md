@@ -1,6 +1,10 @@
 # Change Log
 <!-- Check [Keep a Changelog](http://keepachangelog.com/) -->
 
+## [0.3.3] - 2024-07-17
+### Fixed
+- After creating "config.json" for the first time, the issue of "load schema" command unexecutable was fixed. #10
+
 ## [0.3.2] - 2024-07-16
 ### Changed
 - Changed [README.md](README.md)
