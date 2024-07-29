@@ -15,9 +15,9 @@ const outputChannel: vscode.OutputChannel = vscode.window.createOutputChannel(
   Constants.System.DISPLAY_NAME,
 );
 
-const rootPath = vscode.workspace.rootPath || "";
-
 export function activate(context: vscode.ExtensionContext) {
+  const rootPath = context.asAbsolutePath('/');
+
   const environmentTreeProvider = new EnvironmentTreeProvider(
     context,
     rootPath,
@@ -30,6 +30,16 @@ export function activate(context: vscode.ExtensionContext) {
     "graph-man-environment",
     { treeDataProvider: environmentTreeProvider },
   );
+
+  environmentTreeview.onDidChangeSelection((e) => {
+    if (e.selection.length > 0) {
+      const selectedTreeItem = e.selection[0];
+      if (selectedTreeItem) {
+        environmentTreeProvider.selectEnvironment(selectedTreeItem.label);
+      }
+    }
+  });
+
   vscode.window.createTreeView("graph-man-graphqls", {
     treeDataProvider: graphqlFilesTreeProvider,
   });
@@ -38,6 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
     "graph-man-graphqls",
     graphqlFilesTreeProvider,
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("graph-man.refresh-environment", () =>
       environmentTreeProvider.refresh(),
@@ -85,15 +96,6 @@ export function activate(context: vscode.ExtensionContext) {
       ),
     ),
   );
-
-  environmentTreeview.onDidChangeSelection((e) => {
-    if (e.selection.length > 0) {
-      const selectedTreeItem = e.selection[0];
-      if (selectedTreeItem) {
-        environmentTreeProvider.selectEnvironment(selectedTreeItem.label);
-      }
-    }
-  });
 }
 
 export function deactivate() {}
