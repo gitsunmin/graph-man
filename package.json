@@ -137,6 +137,7 @@
 		"watch-tests": "tsc -p . -w --outDir out",
 		"pretest": "bun run compile-tests && bun run compile && bun run lint",
 		"check-types": "tsc --noEmit",
+		"pull:submodule": "git submodule update --init --recursive && git submodule update --remote",
 		"lint": "bunx @biomejs/biome check --write ./src",
 		"test": "vscode-test",
 		"publish": "vsce publish"
