@@ -12,7 +12,7 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"${workspaceFolder}/example/bun-graphql-server"
+				"${workspaceFolder}/../bun-graphql"
 			],
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
