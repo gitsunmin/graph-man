@@ -159,6 +159,6 @@
 	},
 	"dependencies": {
 		"graphql": "^16.9.0",
-		"ts-pattern": "^5.2.0"
+		"ts-pattern": "^5.6.2"
 	}
 }
