@@ -59,3 +59,8 @@ This Extension is a Tester for GraphQL Queries and Mutations.
 
 [here](https://github.com/gitsunmin/bun-graphql-server)    
 It's a "graphql-server" that uses "graph-man". You can learn more about how to use it in this project.
+
+
+## License
+
+[MIT](LICENSE)
